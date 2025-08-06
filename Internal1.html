@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Celesta - Internal College Registration Form</title>
+  <!-- ✅ Favicon -->
+  <link rel="icon" href="Pictures/p.png" type="image/png" />
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background-color: #f4f4f4;
+      margin: 0;
+      padding: 20px;
+    }
+
+    .container {
+      max-width: 600px;
+      margin: 40px auto;
+      background: #fff;
+      padding: 30px;
+      border-radius: 12px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    }
+
+    h1 {
+      text-align: center;
+      color: #2e7d32;
+      margin-bottom: 30px;
+    }
+
+    label {
+      display: block;
+      margin-top: 15px;
+      font-weight: bold;
+    }
+
+    input, select {
+      width: 100%;
+      padding: 10px;
+      margin-top: 6px;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+      box-sizing: border-box;
+    }
+
+    .radio-row {
+      display: flex;
+      gap: 20px;
+      margin-top: 8px;
+      margin-bottom: 12px;
+    }
+
+    .radio-row label {
+      font-weight: normal;
+      font-size: 15px;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .radio-row input[type="radio"] {
+      transform: scale(0.85);
+      accent-color: #4CAF50;
+    }
+
+    .submit-btn {
+      background-color: #2e7d32;
+      color: white;
+      padding: 12px;
+      border: none;
+      border-radius: 10px;
+      font-size: 16px;
+      margin-top: 25px;
+      cursor: pointer;
+      width: 100%;
+    }
+
+    .submit-btn:hover {
+      background-color: #256428;
+    }
+
+    .gpay-image {
+      display: block;
+      margin: 20px auto 10px auto;
+      width: 200px;
+    }
+
+    .loading-overlay {
+      position: fixed;
+      top: 0; left: 0;
+      width: 100vw; height: 100vh;
+      background: rgba(255,255,255,0.8);
+      z-index: 1000;
+      display: none;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .spinner {
+      border: 6px solid #eee;
+      border-top: 6px solid #4CAF50;
+      border-radius: 50%;
+      width: 50px; height: 50px;
+      animation: spin 1s linear infinite;
+    }
+
+    @keyframes spin {
+      0% { transform: rotate(0deg);}
+      100% { transform: rotate(360deg);}
+    }
+
+    .success-message {
+      text-align: center;
+      margin-top: 20px;
+      color: #2e7d32;
+      font-weight: bold;
+    }
+
+    .back-arrow {
+  position: absolute;
+  top: 20px;
+  left: 20px;
+  font-size: 18px;
+  color: #25a0b3;
+  text-decoration: none;
+  font-weight: bold;
+  transition: 0.3s ease;
+}
+
+.back-arrow:hover {
+  color: #0a4c2b;
+}
+
+  </style>
+</head>
+<body>
+
+  <a href="javascript:history.back()" class="back-arrow">&#8592; Back</a>
+
+  <div class="container">
+    <h1>Celesta - Internal College Registration Form</h1>
+    <form id="registrationForm" enctype="multipart/form-data">
+      <label for="name">Name</label>
+      <input type="text" name="name" required>
+
+      <label for="department">Department</label>
+      <input type="text" name="department" required>
+
+      <label for="year">Year</label>
+      <select name="year" required>
+        <option value="">-- Select Year --</option>
+        <option value="1st">1st</option>
+        <option value="2nd">2nd</option>
+        <option value="3rd">3rd</option>
+        <option value="4th">4th</option>
+      </select>
+
+      <label for="college">College Name</label>
+      <input type="text" name="college" value="Mailam Engineering College" readonly>
+
+      <label for="eventDate">Event Date</label>
+      <input type="text" name="eventDate" value="01-10-2025" readonly>
+
+      <label for="mobile">Mobile Number</label>
+      <input type="tel" name="mobile" required>
+
+      <label for="email">Email ID</label>
+      <input type="email" name="email" required>
+
+      <label>Event Type</label>
+      <div class="radio-row">
+        <label><input type="radio" name="eventType" value="Technical" required> Technical</label>
+        <label><input type="radio" name="eventType" value="Non-Technical"> Non-Technical</label>
+      </div>
+
+      <img src="Pictures/balaji.jpg" alt="GPay Scanner" class="gpay-image">
+
+      <label for="transactionId">Transaction ID</label>
+      <input type="text" name="transactionId" required>
+
+      <label for="photo">Upload Your Payment Photo</label>
+      <input type="file" name="photo" id="photo" accept="image/*" required>
+
+      <button type="submit" class="submit-btn">Submit</button>
+
+      <div class="success-message" id="statusMsg"></div>
+    </form>
+  </div>
+
+  <div class="loading-overlay" id="loadingOverlay">
+    <div class="spinner"></div>
+  </div>
+
+  <script>
+  const form = document.getElementById('registrationForm');
+  const loadingOverlay = document.getElementById('loadingOverlay');
+  const statusMsg = document.getElementById('statusMsg');
+
+  form.addEventListener('submit', async function (e) {
+    e.preventDefault();
+    loadingOverlay.style.display = 'flex';
+
+    const formData = new FormData(form);
+    const photoFile = formData.get('photo');
+
+    if (!photoFile || !photoFile.type.startsWith('image/')) {
+      statusMsg.textContent = '❌ Submission failed: Please upload a valid photo file.';
+      loadingOverlay.style.display = 'none';
+      return;
+    }
+
+    const base64Photo = await toBase64(photoFile);
+    const payload = new URLSearchParams();
+
+    for (const [key, value] of formData.entries()) {
+      if (key !== 'photo') {
+        payload.append(key, value);
+      }
+    }
+
+    payload.append('photo', base64Photo.split(',')[1]); // remove 'data:image/jpeg;base64,'
+    
+    try {
+      const response = await fetch('https://script.google.com/macros/s/AKfycbwNvrpM_Ezz4ugrvwytbuJ1E1JCvmMoZfKJwtqphxU5jEr2doHHtPzs7Gzdo-H_vAONnw/exec', {
+        method: 'POST',
+        body: payload
+      });
+
+      const data = await response.json();
+      loadingOverlay.style.display = 'none';
+
+      if (data.status === 'success') {
+       statusMsg.innerHTML = `✅ Registered Successfully! Your Registration ID is: <span style="color: red;">${data.regId}</span>`;
+
+        form.reset();
+      } else {
+        statusMsg.textContent = '❌ Submission failed: ' + data.message;
+      }
+    } catch (err) {
+      loadingOverlay.style.display = 'none';
+      statusMsg.textContent = '❌ Network error: ' + err.message;
+    }
+  });
+
+  function toBase64(file) {
+    return new Promise((resolve, reject) => {
+      const reader = new FileReader();
+      reader.onload = () => resolve(reader.result);
+      reader.onerror = reject;
+      reader.readAsDataURL(file);
+    });
+  }
+
+  document.addEventListener("contextmenu", e => e.preventDefault());
+
+  document.onkeydown = function(e) {
+    if (
+      e.key === "F12" || 
+      (e.ctrlKey && e.shiftKey && (e.key === "I" || e.key === "J" || e.key === "C")) || 
+      (e.ctrlKey && e.key === "U")
+    ) {
+      return false;
+    }
+  };
+</script>
+
+
+</body>
+</html>

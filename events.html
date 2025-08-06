@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Events - Mailam Engineering College</title>
+  <!-- ✅ Favicon -->
+  <link rel="icon" href="Pictures/p.png" type="image/png" />
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <style>
+     html, body {
+      margin: 0;
+      padding: 0;
+      max-width: 100%;
+      overflow-x: hidden;
+      font-family: Arial, sans-serif;
+      background: #f5f4f4;
+    }
+    body {
+      font-family: Arial, sans-serif;
+      background: #f5f4f4;
+      margin: 0;
+      padding: 0;
+    }
+
+    .header {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      background-color: #02244b;
+      color: white;
+      padding: 70px 10px;
+      text-align: center;
+      position: relative;
+    }
+
+    .logo {
+      width: 150%;
+      max-width: 800px;
+      height: auto;
+      margin-bottom: 15px;
+    }
+
+    .college-name h2 {
+      font-size: clamp(15px, 4vw, 18px);
+      background: linear-gradient(135deg, #f2ea04, #ffffff, #5cc010);
+      background-size: 400% auto;
+      color: transparent;
+      background-clip: text;
+      -webkit-background-clip: text;
+      animation: sparkle 2s linear infinite, glow 2.5s ease-in-out infinite;
+      margin: 0;
+    }
+
+    @keyframes sparkle {
+      0% { background-position: 0% center; }
+      100% { background-position: 200% center; }
+    }
+
+    @keyframes glow {
+      0%, 100% {
+        text-shadow: 0 0 5px #aeb237, 0 0 10px #e2d419, 0 0 15px #9c0909;
+      }
+      50% {
+        text-shadow: 0 0 15px #eee717, 0 0 25px #ffee00, 0 0 30px #b91313;
+      }
+    }
+
+    .menu-toggle {
+      position: absolute;
+      top: 280px;
+      left: 20px;
+      background: none;
+      border: none;
+      color: white;
+      font-size: 28px;
+      cursor: pointer;
+      z-index: 1000;
+      display: block;
+    }
+
+    @media (min-width: 769px) {
+      .menu-toggle {
+        display: none !important;
+      }
+    }
+
+    .navbar {
+      background-color: #004080;
+      text-align: center;
+      padding: 5px 0;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+
+    .navbar a {
+      color: white;
+      margin: 0 15px;
+      text-decoration: none;
+      font-weight: bold;
+      padding: 10px;
+    }
+
+    @media (max-width: 768px) {
+      .navbar {
+        display: none;
+        flex-direction: column;
+      }
+
+      .navbar.active {
+        display: flex;
+      }
+
+      .navbar a {
+        padding: 12px;
+        border-top: 1px solid #0066cc;
+      }
+    }
+
+    .event-buttons {
+      text-align: center;
+      margin: 40px 0;
+    }
+
+    .event-buttons a {
+      display: inline-block;
+      background-color: #002b5c;
+      color: white;
+      padding: 12px 25px;
+      margin: 10px;
+      border-radius: 8px;
+      text-decoration: none;
+      font-size: 16px;
+      transition: background 0.3s;
+    }
+
+    .event-buttons a:hover {
+      background-color: #004080;
+    }
+
+    .gallery {
+      padding: 20px;
+      text-align: center;
+    }
+
+    .gallery h3  {
+      color: #060608;
+    }
+
+    .gallery h2 {
+      color: #0c0c76;
+    }
+
+    .gallery img {
+      width: 250px;
+      height: 180px;
+      object-fit: cover;
+      margin: 10px;
+      border-radius: 8px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+    }
+
+    footer {
+      background-color: #002b5c;
+      color: white;
+      text-align: center;
+      padding: 10px;
+    }
+
+    .loader {
+      width: 60px;
+      height: 60px;
+      border: 6px solid #cbdc43;
+      border-top: 6px solid transparent;
+      border-radius: 50%;
+      animation: spin 1s linear infinite, flash 0.5s infinite alternate;
+    }
+
+    #loading-screen {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(255, 255, 255, 0.9);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      z-index: 9999;
+    }
+
+    @keyframes spin {
+      to { transform: rotate(360deg); }
+    }
+
+    @keyframes flash {
+      from { box-shadow: 0 0 10px #f4f586, 0 0 20px #e6eb99; }
+      to { box-shadow: 0 0 20px #e2f082, 0 0 40px #c0e03d; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- 🔷 Header -->
+  <header class="header">
+    <img src="Pictures/mecclg.png" alt="College Logo" class="logo">
+    <div class="college-name">
+      <h2>DEPARTMENT OF INFORMATION TECHNOLOGY</h2>
+    </div>
+    <button class="menu-toggle" onclick="toggleMenu()">☰</button>
+  </header>
+
+  <!-- 🔷 Navigation -->
+  <nav class="navbar" id="navbar">
+    <a href="index.html">Home</a>
+    <a href="about.html">About</a>
+    <a href="events.html">Events</a>
+    <a href="news.html">News</a>
+    <a href="gallery.html">Gallery</a>
+    <a href="eventsregister.html">Events Register</a>
+    <a href="faculty.html">Faculty</a>
+    <a href="login.html">Student Login</a>
+    <a href="notes.html">Notes</a>
+    <a href="contact.html">Contact Us</a>
+  </nav>
+
+  <!-- 🔷 Event Buttons -->
+  <div class="event-buttons">
+    <a href="event-aiworkshop.html">AI & ML Workshop</a>
+    <a href="event-infotech.html">INFOTECH 2K25</a>
+    <a href="event-miniproject.html">Mini Project Expo</a>
+    <a href="event-celesta.html">Celesta'25</a>
+  </div>
+
+  <!-- 🔷 Gallery -->
+  <div class="gallery">
+    <h2>Upcoming Events</h2>
+    <h3>Keep Follow us for More Updates.</h3>
+  </div>
+
+  <!-- 🔷 Footer -->
+  <footer>
+    <p>© 2025 Mailam Engineering College. All Rights Reserved.</p>
+  </footer>
+
+  <!-- 🔷 Developer Credit -->
+  <div style="text-align:center; font-size:14px; color:#444; margin:10px 0 30px;">
+    <strong>DEVELOPED BY "A" BOTTERS</strong>
+  </div>
+
+  <!-- 🔷 Script -->
+  <script>
+    function toggleMenu() {
+      document.getElementById("navbar").classList.toggle("active");
+    }
+
+    window.addEventListener("load", () => {
+      const loader = document.getElementById("loading-screen");
+      if (loader) {
+        loader.style.opacity = "0";
+        setTimeout(() => loader.style.display = "none", 500);
+      }
+    });
+
+    document.addEventListener("contextmenu", e => e.preventDefault());
+
+  document.onkeydown = function(e) {
+    if (
+      e.key === "F12" || 
+      (e.ctrlKey && e.shiftKey && (e.key === "I" || e.key === "J" || e.key === "C")) || 
+      (e.ctrlKey && e.key === "U")
+    ) {
+      return false;
+    }
+  };
+  </script>
+</body>
+</html>

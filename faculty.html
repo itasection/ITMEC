@@ -1,0 +1,498 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Faculty - Mailam Engineering College</title>
+  <!-- ✅ Favicon -->
+  <link rel="icon" href="Pictures/p.png" type="image/png" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <style>
+     html, body {
+      margin: 0;
+      padding: 0;
+      max-width: 100%;
+      overflow-x: hidden;
+      font-family: Arial, sans-serif;
+      background: #f5f4f4;
+    }
+    body {
+      font-family: Arial, sans-serif;
+      background: #f5f4f4;
+      margin: 0;
+      padding: 0;
+    }
+
+    .header {
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      background-color: #02244b;
+      color: white;
+      padding: 70px 10px;
+      text-align: center;
+    }
+
+    .logo {
+      width: 150%;
+      max-width: 800px;
+      height: auto;
+      margin-bottom: 15px;
+    }
+
+    .college-name h2 {
+      font-size: clamp(15px, 4vw, 18px);
+      background: linear-gradient(135deg, #f2ea04, #ffffff, #5cc010);
+      background-size: 400% auto;
+      color: transparent;
+      background-clip: text;
+      -webkit-background-clip: text;
+      animation: sparkle 2s linear infinite, glow 2.5s ease-in-out infinite;
+      margin: 0;
+    }
+
+    @keyframes sparkle {
+      0% { background-position: 0% center; }
+      100% { background-position: 200% center; }
+    }
+
+    @keyframes glow {
+      0%, 100% {
+        text-shadow: 0 0 5px #aeb237, 0 0 10px #e2d419, 0 0 15px #9c0909;
+      }
+      50% {
+        text-shadow: 0 0 15px #eee717, 0 0 25px #ffee00, 0 0 30px #b91313;
+      }
+    }
+
+    .menu-toggle {
+      position: absolute;
+      top: 300px;
+      left: 10px;
+      background: none;
+      border: none;
+      color: white;
+      font-size: 28px;
+      cursor: pointer;
+    }
+
+    @media (min-width: 769px) {
+      .menu-toggle {
+        display: none !important;
+      }
+    }
+
+    .navbar {
+      background-color: #004080;
+      text-align: center;
+      padding: 5px 0;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+
+    .navbar a {
+      color: white;
+      margin: 0 15px;
+      text-decoration: none;
+      font-weight: bold;
+      padding: 10px;
+    }
+
+    @media (max-width: 768px) {
+      .navbar {
+        display: none;
+        flex-direction: column;
+      }
+      .navbar.active {
+        display: flex;
+      }
+      .navbar a {
+        padding: 12px;
+        border-top: 1px solid #0066cc;
+      }
+    }
+
+    #loading-screen {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(255, 255, 255, 0.9);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      z-index: 9999;
+    }
+
+    .loader {
+      width: 60px;
+      height: 60px;
+      border: 6px solid #cbdc43;
+      border-top: 6px solid transparent;
+      border-radius: 50%;
+      animation: spin 1s linear infinite, flash 0.5s infinite alternate;
+    }
+
+    @keyframes spin {
+      to { transform: rotate(360deg); }
+    }
+
+    @keyframes flash {
+      from { box-shadow: 0 0 10px #f4f586, 0 0 20px #e6eb99; }
+      to { box-shadow: 0 0 20px #e2f082, 0 0 40px #c0e03d; }
+    }
+
+    main {
+      padding: 40px 20px;
+    }
+
+    .faculty-container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 40px;
+    }
+
+    .faculty-card {
+      background-color: white;
+      border-radius: 12px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+      padding: 20px;
+      width: 90%;
+      max-width: 900px;
+      display: flex;
+      gap: 20px;
+      align-items: flex-start;
+      flex-wrap: wrap;
+      position: relative;
+    }
+
+    .faculty-card.reverse {
+      flex-direction: row-reverse;
+    }
+
+    .faculty-photo {
+      width: 200px;
+      height: 200px;
+      border-radius: 15px;
+      object-fit: cover;
+      padding: 4px;
+      background: linear-gradient(45deg, #181818, #70676a, #3d3d39, #e1dfd8);
+      background-size: 400% 400%;
+      animation: glitter 3.5s linear infinite;
+    }
+
+    @keyframes glitter {
+      0% {
+        background-position: 0% 50%;
+        box-shadow: 0 0 10px #e1dcaf, 0 0 20px #160d14;
+      }
+      50% {
+        background-position: 100% 50%;
+        box-shadow: 0 0 20px #150b13, 0 0 30px #201f12;
+      }
+      100% {
+        background-position: 0% 50%;
+        box-shadow: 0 0 10px #b8cdb8, 0 0 20px #b3b058;
+      }
+    }
+
+    .faculty-slide {
+      flex: 1;
+      min-width: 250px;
+    }
+
+    .faculty-name {
+      font-size: 20px;
+      font-weight: bold;
+      color: #002b5c;
+      margin-bottom: 5px;
+    }
+
+    .faculty-position {
+      font-size: 15px;
+      font-weight: 500;
+      color: #555;
+      margin-bottom: 10px;
+    }
+
+    .faculty-bio {
+      font-size: 14px;
+      color: #333;
+      line-height: 1.6;
+      text-align: justify;
+    }
+
+    footer {
+      background-color: #002b5c;
+      color: white;
+      text-align: center;
+      padding: 10px;
+    }
+
+    .developer-credit {
+      text-align: center;
+      font-size: 14px;
+      color: #444;
+      margin: 10px 0 30px;
+    }
+
+    .h2 {
+      color: #7d1e7e;
+    }
+  </style>
+</head>
+<body>
+
+  <header class="header">
+    <img src="Pictures/mecclg.png" alt="College Logo" class="logo">
+    <div class="college-name">
+      <h2>DEPARTMENT OF INFORMATION TECHNOLOGY</h2>
+    </div>
+    <button class="menu-toggle" onclick="toggleMenu()">☰</button>
+  </header>
+
+  <div id="loading-screen">
+    <div class="loader"></div>
+  </div>
+
+  <nav class="navbar" id="navbar">
+    <a href="index.html">Home</a>
+    <a href="about.html">About</a>
+    <a href="events.html">Events</a>
+    <a href="news.html">News</a>
+    <a href="gallery.html">Gallery</a>
+    <a href="eventsregister.html">Events Register</a>
+    <a href="faculty.html">Faculty</a>
+    <a href="login.html">Student Login</a>
+    <a href="notes.html">Notes</a>
+    <a href="contact.html">Contact Us</a>
+  </nav>
+
+  <main>
+    <div class="h2">
+      <center><h2><u>Our Faculties</u></h2></center>
+    </div>
+    <section class="faculty-container">
+      
+      <!-- Faculty 1 -->
+      <div class="faculty-card">
+        <img src="Pictures/kvmam.jpg" class="faculty-photo" alt="Kalaivany">
+        <div class="faculty-slide">
+          <div class="faculty-details">
+            <div class="faculty-name">Dr. S. Kalaivany</div>
+            <div class="faculty-position">Professor and Head of the Department</div>
+            <div class="faculty-bio">Dr. Kalaivany is an 20 years  experienced faculty member committed to academic excellence and innovation in IT education.</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Faculty 2 -->
+      <div class="faculty-card reverse" onclick="toggleDetails(this)">
+        <img src="Pictures/gaji sir.jpg" class="faculty-photo" alt="Gajeniran  sir Pic">
+        <div class="click-hint"></div>
+        <div class="faculty-slide">
+          <div class="faculty-details">
+            <div class="faculty-name">Mr. R Gajendiran</div>
+            <div class="faculty-position">Assistant HOD and Associative Professor</div>
+            <div class="faculty-bio">Mr. Gajendhiran is an 14 Years experienced faculty member committed to academic excellence, innovation, and student mentoring in the field of IT and engineering education.</div>
+          </div>
+        </div>
+      </div>
+
+
+
+
+       <!-- Faculty 3 -->
+      <div class="faculty-card" onclick="toggleDetails(this)">
+        <img src="Pictures/logisir.jpg" class="faculty-photo" alt="Loganathan sir Photo">
+        <div class="click-hint"></div>
+        <div class="faculty-slide">
+          <div class="faculty-details">
+            <div class="faculty-name">Mr. K Loganathan</div>
+            <div class="faculty-position">Assistant Professor</div>
+            <div class="faculty-bio">He is an experienced and senior faculty member committed to academic excellence, innovation, and student mentoring in the field of IT and engineering education.</div>
+          </div>
+        </div>
+      </div>
+
+
+       <!-- Faculty 4 -->
+      <div class="faculty-card reverse" onclick="toggleDetails(this)">
+        <img src="Pictures/ramyamam.jpg" class="faculty-photo" alt="Ramya mam pic">
+        <div class="click-hint"></div>
+        <div class="faculty-slide">
+          <div class="faculty-details">
+            <div class="faculty-name">Mrs. C Ramya</div>
+            <div class="faculty-position">Assistant Professor</div>
+            <div class="faculty-bio">She is an experienced faculty member committed to academic excellence, innovation, and student mentoring in the field of IT and engineering education.</div>
+          </div>
+        </div>
+      </div>
+
+
+       <!-- Faculty 5 -->
+      <div class="faculty-card" onclick="toggleDetails(this)">
+        <img src="Pictures/aswinimam.jpg" class="faculty-photo" alt="Aswini mam pic">
+        <div class="click-hint"></div>
+        <div class="faculty-slide">
+          <div class="faculty-details">
+            <div class="faculty-name">Ms. R Aswini</div>
+            <div class="faculty-position">Assistant Professor</div>
+            <div class="faculty-bio">She is an experienced faculty member committed to academic excellence, innovation, and student mentoring in the field of IT and engineering education.</div>
+          </div>
+        </div>
+      </div>
+
+       <!-- Faculty 6 -->
+      <div class="faculty-card reverse" onclick="toggleDetails(this)">
+        <img src="Pictures/sathyamam.jpg" class="faculty-photo" alt="Sathya mam Pic">
+        <div class="click-hint"></div>
+        <div class="faculty-slide">
+          <div class="faculty-details">
+            <div class="faculty-name">Mrs. S Sathiya</div>
+            <div class="faculty-position">Assistant Professor</div>
+            <div class="faculty-bio">She is an experienced faculty member committed to academic excellence, innovation, and student mentoring in the field of IT and engineering education.</div>
+          </div>
+        </div>
+      </div>
+
+
+       <!-- Faculty 7 -->
+      <div class="faculty-card" onclick="toggleDetails(this)">
+        <img src="Pictures/archumam.jpg" class="faculty-photo" alt="Archana Devi mam pic">
+        <div class="click-hint"></div>
+        <div class="faculty-slide">
+          <div class="faculty-details">
+            <div class="faculty-name">Ms. P Archana Devi</div>
+            <div class="faculty-position">Assistant Professor</div>
+            <div class="faculty-bio">She is an experienced faculty member committed to academic excellence, innovation, and student mentoring in the field of IT and engineering education.</div>
+          </div>
+        </div>
+      </div>
+
+
+       <!-- Faculty 8 -->
+      <div class="faculty-card reverse" onclick="toggleDetails(this)">
+        <img src="Pictures/karthiksir.jpg" class="faculty-photo" alt="Karthikeyan sir pic">
+        <div class="click-hint"></div>
+        <div class="faculty-slide">
+          <div class="faculty-details">
+            <div class="faculty-name">Mr. A Karthikeyan</div>
+            <div class="faculty-position">Assistant Professor</div>
+            <div class="faculty-bio">He is an experienced faculty member committed to academic excellence, innovation, and student mentoring in the field of IT and engineering education.</div>
+          </div>
+        </div>
+      </div>
+
+ <!-- Faculty 9 -->
+      <div class="faculty-card" onclick="toggleDetails(this)">
+        <img src="Pictures/rameshsir.jpg" class="faculty-photo" alt="Ramesh sir Photo">
+        <div class="click-hint"></div>
+        <div class="faculty-slide">
+          <div class="faculty-details">
+            <div class="faculty-name">Mr. S Ramesh</div>
+            <div class="faculty-position">Assistant Professor</div>
+            <div class="faculty-bio">He is an experienced faculty member committed to academic excellence, innovation, and student mentoring in the field of IT and engineering education.</div>
+          </div>
+        </div>
+      </div>
+
+       <!-- Faculty 10 -->
+      <div class="faculty-card reverse" onclick="toggleDetails(this)">
+        <img src="Pictures/lavmam.jpg" class="faculty-photo" alt="Lavanya Mam pic">
+        <div class="click-hint"></div>
+        <div class="faculty-slide">
+          <div class="faculty-details">
+            <div class="faculty-name">Mrs. M Lavanya</div>
+            <div class="faculty-position">Assistant Professor</div>
+            <div class="faculty-bio">She is an experienced faculty member committed to academic excellence, innovation, and student mentoring in the field of IT and engineering education.</div>
+          </div>
+        </div>
+      </div>
+
+       <!-- Faculty 11 -->
+      <div class="faculty-card" onclick="toggleDetails(this)">
+        <img src="Pictures/vijimam.jpg" class="faculty-photo" alt="Vijayalakshmi mam Pic">
+        <div class="click-hint"></div>
+        <div class="faculty-slide">
+          <div class="faculty-details">
+            <div class="faculty-name">Mrs. Vijayalakshmi</div>
+            <div class="faculty-position">Assistant Professor</div>
+            <div class="faculty-bio">She is an experienced faculty member committed to academic excellence, innovation, and student mentoring in the field of IT and engineering education.</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Faculty 12 -->
+      <div class="faculty-card reverse" onclick="toggleDetails(this)">
+        <img src="Pictures/sharmi mam.jpg" class="faculty-photo" alt=" Sharmila Mam pic">
+        <div class="click-hint"></div>
+        <div class="faculty-slide">
+          <div class="faculty-details">
+            <div class="faculty-name">Mrs. P Sharmila</div>
+            <div class="faculty-position">Assistant Professor</div>
+            <div class="faculty-bio">She is an experienced faculty member committed to academic excellence, innovation, and student mentoring in the field of IT and engineering education.</div>
+          </div>
+        </div>
+      </div>
+
+
+
+
+    
+
+
+  
+
+
+
+
+      <!-- 🔁 Repeat similarly for other faculty -->
+      <!-- You can continue adding faculty-card blocks manually -->
+
+      <!-- Repeat for others as before... -->
+      <!-- You can paste the rest of the faculty blocks here without onclick or reverse class -->
+      <!-- All your faculty-card blocks stay the same here -->
+      <!-- ... (everything from Faculty 1 to Faculty 11) ... -->
+    </section>
+  </main>
+
+  <footer>
+    <p>© 2025 Mailam Engineering College. All Rights Reserved.</p>
+  </footer>
+
+  <div class="developer-credit">
+    <strong>DEVELOPED BY "A" BOTTERS</strong>
+  </div>
+
+  <script>
+    function toggleMenu() {
+      document.getElementById("navbar").classList.toggle("active");
+    }
+
+    window.addEventListener("load", () => {
+      const loader = document.getElementById("loading-screen");
+      if (loader) {
+        loader.style.opacity = "0";
+        setTimeout(() => loader.style.display = "none", 500);
+      }
+    });
+
+    document.addEventListener("contextmenu", e => e.preventDefault());
+
+  document.onkeydown = function(e) {
+    if (
+      e.key === "F12" || 
+      (e.ctrlKey && e.shiftKey && (e.key === "I" || e.key === "J" || e.key === "C")) || 
+      (e.ctrlKey && e.key === "U")
+    ) {
+      return false;
+    }
+  };
+  </script>
+</body>
+</html>

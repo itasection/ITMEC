@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Animated Registration</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    body {
+      margin: 0;
+      background: linear-gradient(to right, #667eea, #764ba2);
+      font-family: 'Segoe UI', sans-serif;
+      overflow: hidden;
+    }
+
+    .scene {
+      position: relative;
+      width: 100vw;
+      height: 100vh;
+    }
+
+    .man {
+      position: absolute;
+      bottom: 20px;
+      left: -150px;
+      width: 120px;
+      animation: walkIn 3s forwards;
+    }
+
+    .bag {
+      position: absolute;
+      bottom: 20px;
+      left: 280px;
+      width: 60px;
+      opacity: 0;
+      animation: dropBag 1s 3s forwards;
+    }
+
+    .form-container {
+      position: absolute;
+      left: 360px;
+      bottom: 100px;
+      background: white;
+      padding: 30px;
+      border-radius: 12px;
+      width: 320px;
+      box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+      transform: translateY(200px);
+      opacity: 0;
+      animation: slideFormUp 1s 4s forwards;
+    }
+
+    .form-container h2 {
+      margin-top: 0;
+      color: #333;
+      font-size: 24px;
+    }
+
+    .form-container input {
+      width: 100%;
+      padding: 12px;
+      margin-bottom: 15px;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+      font-size: 16px;
+    }
+
+    .form-container button {
+      width: 100%;
+      padding: 12px;
+      background: #28a745;
+      border: none;
+      color: white;
+      font-size: 16px;
+      border-radius: 8px;
+      cursor: pointer;
+    }
+
+    .form-container button:hover {
+      background: #218838;
+    }
+
+    /* Animations */
+    @keyframes walkIn {
+      to {
+        left: 200px;
+      }
+    }
+
+    @keyframes dropBag {
+      to {
+        opacity: 1;
+      }
+    }
+
+    @keyframes slideFormUp {
+      to {
+        transform: translateY(0);
+        opacity: 1;
+      }
+    }
+
+    @media (max-width: 600px) {
+      .man {
+        display: none;
+      }
+      .bag {
+        display: none;
+      }
+      .form-container {
+        left: 20px;
+        right: 20px;
+        width: auto;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="scene">
+    <!-- Replace these with your own PNGs/SVGs -->
+    <img src="Pictures/images.jpeg" alt="Man" class="man">
+    <img src="https://i.imgur.com/ViT1Yc7.png" alt="Bag" class="bag">
+
+    <div class="form-container">
+      <h2>Register Now</h2>
+      <form>
+        <input type="text" placeholder="Your name" required />
+        <input type="email" placeholder="Your email" required />
+        <button type="submit">Submit</button>
+      </form>
+    </div>
+  </div>
+</body>
+</html>

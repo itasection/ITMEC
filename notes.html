@@ -1,0 +1,431 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Notes - Mailam Engineering College</title>
+  <!-- ✅ Favicon -->
+  <link rel="icon" href="Pictures/p.png" type="image/png" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <style>
+     html, body {
+      margin: 0;
+      padding: 0;
+      max-width: 100%;
+      overflow-x: hidden;
+      font-family: Arial, sans-serif;
+      background: #f5f4f4;
+    }
+
+    body {
+      font-family: Arial, sans-serif;
+      background: #f5f4f4;
+      margin: 0;
+      padding: 0;
+    }
+
+    .header {
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      background-color: #02244b;
+      color: white;
+      padding: 70px 10px;
+      text-align: center;
+    }
+
+    .logo {
+      width: 150%;
+      max-width: 800px;
+      height: auto;
+      margin-bottom: 15px;
+    }
+
+    .college-name h2 {
+      font-size: clamp(15px, 4vw, 18px);
+      background: linear-gradient(135deg, #f2ea04, #ffffff, #5cc010);
+      background-size: 400% auto;
+      color: transparent;
+      background-clip: text;
+      -webkit-background-clip: text;
+      animation: sparkle 2s linear infinite, glow 2.5s ease-in-out infinite;
+      margin: 0;
+    }
+
+    @keyframes sparkle {
+      0% { background-position: 0% center; }
+      100% { background-position: 200% center; }
+    }
+
+    @keyframes glow {
+      0%, 100% {
+        text-shadow: 0 0 5px #aeb237, 0 0 10px #e2d419, 0 0 15px #9c0909;
+      }
+      50% {
+        text-shadow: 0 0 15px #eee717, 0 0 25px #ffee00, 0 0 30px #b91313;
+      }
+    }
+
+    .menu-toggle {
+      position: absolute;
+      top: 300px;
+      left: 10px;
+      background: none;
+      border: none;
+      color: white;
+      font-size: 28px;
+      cursor: pointer;
+    }
+
+    /* Hide toggle menu on laptops/desktops */
+    @media (min-width: 769px) {
+      .menu-toggle {
+        display: none;
+      }
+    }
+
+    .navbar {
+      background-color: #004080;
+      text-align: center;
+      padding: 5px 0;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+
+    .navbar a {
+      color: white;
+      margin: 0 15px;
+      text-decoration: none;
+      font-weight: bold;
+      padding: 10px;
+    }
+
+    @media (max-width: 768px) {
+      .navbar {
+        display: none;
+        flex-direction: column;
+      }
+      .navbar.active {
+        display: flex;
+      }
+      .navbar a {
+        padding: 12px;
+        border-top: 1px solid #0066cc;
+      }
+    }
+
+    #loading-screen {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(255, 255, 255, 0.9);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      z-index: 9999;
+    }
+
+    .loader {
+      width: 60px;
+      height: 60px;
+      border: 6px solid #cbdc43;
+      border-top: 6px solid transparent;
+      border-radius: 50%;
+      animation: spin 1s linear infinite, flash 0.5s infinite alternate;
+    }
+
+    @keyframes spin {
+      to { transform: rotate(360deg); }
+    }
+
+    @keyframes flash {
+      from { box-shadow: 0 0 10px #f4f586, 0 0 20px #e6eb99; }
+      to { box-shadow: 0 0 20px #e2f082, 0 0 40px #c0e03d; }
+    }
+
+    main {
+      padding: 40px 20px;
+      max-width: 1000px;
+      margin: auto;
+    }
+
+    .year-buttons {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 20px;
+      margin-bottom: 30px;
+    }
+
+    .year-buttons button {
+      padding: 15px 30px;
+      font-size: 16px;
+      background-color: #007acc;
+      color: white;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: background 0.3s;
+    }
+
+    .year-buttons button:hover {
+      background-color: #005fa3;
+    }
+
+    .semester-section {
+      display: none;
+      margin-bottom: 40px;
+    }
+
+    .semester-section.active {
+      display: block;
+    }
+
+    .semester-title {
+      font-size: 20px;
+      margin-top: 20px;
+      color: #002b5c;
+    }
+
+    .material-list {
+      background: white;
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+      margin-top: 10px;
+    }
+
+    .material-list h4 {
+      color: #007acc;
+      margin-bottom: 10px;
+    }
+
+    .material-list ul {
+      list-style: none;
+      padding-left: 0;
+    }
+
+    .material-list li {
+      margin: 8px 0;
+    }
+
+    .material-list a {
+      color: #004080;
+      text-decoration: none;
+    }
+
+    .material-list a:hover {
+      text-decoration: underline;
+    }
+
+    footer {
+      background-color: #002b5c;
+      color: white;
+      text-align: center;
+      padding: 10px;
+    }
+
+    .developer-credit {
+      text-align: center;
+      font-size: 14px;
+      color: #444;
+      margin: 10px 0 30px;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Header -->
+  <header class="header">
+    <img src="Pictures/mecclg.png" alt="College Logo" class="logo">
+    <div class="college-name">
+      <h2>DEPARTMENT OF INFORMATION TECHNOLOGY</h2>
+    </div>
+    <button class="menu-toggle" onclick="toggleMenu()">☰</button>
+  </header>
+
+  <!-- Loading -->
+  <div id="loading-screen">
+    <div class="loader"></div>
+  </div>
+
+  <!-- Navbar -->
+  <nav class="navbar" id="navbar">
+    <a href="index.html">Home</a>
+    <a href="about.html">About</a>
+    <a href="events.html">Events</a>
+    <a href="news.html">News</a>
+    <a href="gallery.html">Gallery</a>
+    <a href="eventsregister.html">Events Register</a>
+    <a href="faculty.html">Faculty</a>
+    <a href="login.html">Student Login</a>
+    <a href="notes.html">Notes</a>
+    <a href="contact.html">Contact Us</a>
+  </nav>
+
+  <!-- Main -->
+  <!-- [Your Notes Content Section Remains Here - Unchanged] -->
+   <!-- Main -->
+  <main>
+    <div class="year-buttons">
+      <button onclick="showSemester('second')">Second Year</button>
+      <button onclick="showSemester('third')">Third Year</button>
+      <button onclick="showSemester('final')">Final Year</button>
+    </div>
+
+    <!-- 🔽 Second Year -->
+    <div id="second" class="semester-section">
+      <div class="semester-title">Second Year - Odd Semester</div>
+      <div class="material-list">
+        <h4>Materials</h4>
+        <ul>
+          <li><a href="https://drive.google.com/file/d/1W5bTwnSnITwyz_HCdhBi-yGdYnMVMM9-/view?usp=sharing">📘 Data Structures and Algorithms</a></li>
+          <li><a href="https://drive.google.com/file/d/1IXIou4ZYc0cTHWsmwGfmuX-EyyHyaJDu/view?usp=sharing">📘 Discrete Mathematics</a></li>
+          <li><a href="https://drive.google.com/file/d/15W0s4AmLYdtQoB4aqcLOC3douwbSj7-S/view?usp=sharing">📘 Object Oriented Programming</a></li>
+          <li><a href="https://drive.google.com/file/d/1JCessrO3l4808iK3xtm-pS4KbCZ53-Pl/view?usp=sharing">📘 Foundation Of Data Science</a></li>
+          <li><a href="https://drive.google.com/file/d/1CEoGToMzeMOGdvcGATiKgaUew2u7CNXD/view?usp=sharing">📘 Digital Principle and Computer Organization</a></li>
+        </ul>
+        <h4>AU Question Papers</h4>
+        <ul>
+          <li><a href="https://drive.google.com/file/d/13QzXtRHIJgXOQY-bu5u5yPQUCXVtWPKe/view?usp=sharing">📄 DSA AU Question Paper</a></li>
+          <li><a href="https://drive.google.com/file/d/1-rRw7EOOwj0I8WoD1hA2lXzdr5NaIeaC/view?usp=sharing">📄 DM AU Question Paper</a></li>
+          <li><a href="https://drive.google.com/file/d/1AeRk-GkUWVHBtv6LMviHTNJSFEt8cT5J/view?usp=sharing">📄 OOPS AU Question Paper</a></li>
+          <li><a href="https://drive.google.com/file/d/1crvlH0TVW_tQLoe6zcRktD_g_7uFV1zw/view?usp=drive_link">📄 FDS AU Question Paper</a></li>
+          <li><a href="https://drive.google.com/file/d/15jf4e9Xjyy1uhgjtSkSgMyBxhLcnOg3v/view?usp=sharing">📄 DPCO AU Question Paper</a></li>
+        </ul>
+      </div>
+
+      <div class="semester-title">Second Year - Even Semester</div>
+      <div class="material-list">
+        <h4>Materials</h4>
+        <ul>
+          <li><a href="https://drive.google.com/file/d/1LUa7Ss1rwhoeTzUe9hCkOQsfV3z-NsoK/view?usp=sharing">📘 Theory Of Computation</a></li>
+          <li><a href="https://drive.google.com/file/d/1IUiURHiVNm0O3V_B1QzlgEZ9oG8YzG18/view?usp=sharing">📘 Artificial Intelligence and Machine Learning</a></li>
+          <li><a href="https://drive.google.com/file/d/11EfVwW24FdbOV5TVWdoISuxO9oIAOCm8/view?usp=sharing">📘 Database Management System</a></li>
+          <li><a href="https://drive.google.com/file/d/1eA9Y9F6HbWyBEBUhzo8PxtUCFUw5kqTC/view?usp=sharing">📘 Introduction to Operatin System</a></li>
+          <li><a href="https://drive.google.com/file/d/1pCsQfahKeSBQhH9pUP48MkATD0MnwKru/view?usp=sharing">📘 Environmental Science and Susability</a></li>
+          <li><a href="https://drive.google.com/file/d/1A9nqoi3VucHVuFL0hAnBinUlaqvepgHU/view?usp=sharing">📘 web Essentials</a></li>
+        </ul>
+        <h4>AU Question Papers</h4>
+        <ul>
+          <li><a href="https://drive.google.com/file/d/1wBmCtHVQbha51pyowvUrAQmyMhPckjsv/view?usp=sharing">📄 TOC AU Question Paper</a></li>
+          <li><a href="https://drive.google.com/file/d/1KidIIrsf2aYCqWRpMjmde0-4S42da5Ik/view?usp=sharing">📄 AIML AU Question Paper</a></li>
+          <li><a href="https://drive.google.com/file/d/1yuWjQKHCvZ7RUgnCudUtmtr3lDizqIv6/view?usp=sharing">📄 DBMS AU Question Paper</a></li>
+          <li><a href="https://drive.google.com/file/d/18OB8H5OEd49j_ki_Y0jIJK-1n85ghCdR/view?usp=sharing">📄 IOS AU Question Paper</a></li>
+          <li><a href="https://drive.google.com/file/d/1ng-cavmKpyn-u2Tvdwzvptfb0HqtCO97/view?usp=sharing">📄 ESS AU Question Paper</a></li>
+          <li><a href="https://drive.google.com/file/d/1PvPYNDJI9h4UvLehFr0EC_GaAJC07oE_/view?usp=sharing">📄 WE AU Question Paper</a></li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- 🔽 Third Year-->
+    <div id="third" class="semester-section">
+      <div class="semester-title">Third Year - Odd Semester</div>
+      <div class="material-list">
+        <h4>Materials</h4>
+        <ul>
+          <li><a href="https://drive.google.com/file/d/1cUNRF2mGM7VTja64QYPf4fDzvZBsTqOT/view?usp=sharing">📘 Cloud Computing</a></li>
+          <li><a href="https://drive.google.com/file/d/1gGyUvLStfphjXnugFcVvQaIde67Pb2PT/view?usp=sharing">📘 Distributed Computing</a></li>
+          <li><a href="https://drive.google.com/file/d/1dSNVE_20ORx4poTuMvqgJ6qlhSHBxwRQ/view?usp=sharing">📘 Computer Networks</a></li>
+          <li><a href="https://drive.google.com/file/d/1cwFrph0ArfCSPydX4RonZVHq9CKJq45G/view?usp=sharing">📘 Data Warehousing</a></li>
+          <li><a href="https://drive.google.com/file/d/1A1O64HEc0_5-E03MRrbsEdCUv8pwc7Ob/view?usp=sharing">📘 Embedded System and IOT</a></li>
+          <li><a href="https://drive.google.com/file/d/1ORUCSEB2ugZ7sdYraoWZMwBPatDt2q5-/view?usp=sharing">📘 Full Stack Development</a></li>
+          
+        </ul>
+        <h4>AU Question Papers</h4>
+        <ul>
+          <li><a href="https://drive.google.com/file/d/1XivxylWEuBs3ms7QpP1g8a36fzKhnBO1/view?usp=sharing">📄 CC AU Question Paper</a></li>
+          <li><a href="https://drive.google.com/file/d/1LXMfV3ycHeN-KSpAMH5YO_yPTfwdaW9P/view?usp=sharing">📄 DC AU Question Paper</a></li>
+          <li><a href="https://drive.google.com/file/d/1zQxacdgWwQ6v9AcKnYBNcbi-IIglHoqv/view?usp=sharing">📄 CN AU Question Paper</a></li>
+          <li><a href="https://drive.google.com/file/d/1w8RNJCbM4xRJmxogRZpLwIiroD5X9hhF/view?usp=sharing">📄 DW AU Question Paper</a></li>
+          <li><a href="https://drive.google.com/file/d/149LBzDg51ms_2zg2QjIS7nEdTVRVpmG8/view?usp=sharing">📄 IOT AU Question Paper</a></li>
+          <li><a href="#">📄 FSD AU Question Paper</a></li>
+        </ul>
+      </div>
+
+      <div class="semester-title">Third Year - Even Semester</div>
+      <div class="material-list">
+        <h4>Materials</h4>
+        <ul>
+          <li><a href="#">📘 Digital Marketing</a></li>
+          <li><a href="#">📘 Object Oriented Software Engineering</a></li>
+          <li><a href="#">📘 Network Security</a></li>
+          <li><a href="#">📘 Cloud Service Management</a></li>
+          <li><a href="#">📘 Ethics and AI</a></li>
+          
+        </ul>
+        <h4>AU Question Papers</h4>
+        <ul>
+          <li><a href="#">📄 DM AU Question Paper</a></li>
+          <li><a href="#">📄 OOSE AU Question Paper</a></li>
+          <li><a href="#">📄 NS AU Question Paper</a></li>
+          <li><a href="#">📄 CSM AU Question Paper</a></li>
+          <li><a href="#">📄 EAI AU Question Paper</a></li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- 🔽 Final Year -->
+    <div id="final" class="semester-section">
+      <div class="semester-title">Final Year - Project & Viva</div>
+      <div class="material-list">
+        <h4>Documents</h4>
+        <ul>
+          <li><a href="#">📘 Project Guidelines</a></li>
+          <li><a href="#">📄 Viva Questions</a></li>
+        </ul>
+      </div>
+    </div>
+  </main>
+
+  <!-- Footer -->
+  <footer>
+    <p>© 2025 Mailam Engineering College. All Rights Reserved.</p>
+  </footer>
+
+  <div class="developer-credit">
+    <strong>DEVELOPED BY "A" BOTTERS</strong>
+  </div>
+
+  <!-- JavaScript -->
+  <script>
+    function toggleMenu() {
+      document.getElementById("navbar").classList.toggle("active");
+    }
+
+    function showSemester(id) {
+      const sections = document.querySelectorAll('.semester-section');
+      sections.forEach(section => section.classList.remove('active'));
+      document.getElementById(id).classList.add('active');
+    }
+
+    window.addEventListener("load", () => {
+      const loader = document.getElementById("loading-screen");
+      if (loader) {
+        loader.style.opacity = "0";
+        setTimeout(() => loader.style.display = "none", 500);
+      }
+    });
+
+ 
+
+  document.addEventListener("contextmenu", e => e.preventDefault());
+
+    
+  document.onkeydown = function(e) {
+    if (
+      e.key === "F12" || 
+      (e.ctrlKey && e.shiftKey && (e.key === "I" || e.key === "J" || e.key === "C")) || 
+      (e.ctrlKey && e.key === "U")
+    ) {
+      return false;
+    }
+  };
+  </script>
+
+</body>
+</html>

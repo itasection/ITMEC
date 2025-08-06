@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Gallery - Mailam Engineering College</title>
+  <!-- ✅ Favicon -->
+  <link rel="icon" href="Pictures/p.png" type="image/png" />
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <style>
+
+     html, body {
+      margin: 0;
+      padding: 0;
+      max-width: 100%;
+      overflow-x: hidden;
+      font-family: Arial, sans-serif;
+      background: #f5f4f4;
+    }
+    body {
+      font-family: Arial, sans-serif;
+      background: #f5f4f4;
+      margin: 0;
+      padding: 0;
+    }
+
+    .header {
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      background-color: #02244b;
+      color: white;
+      padding: 70px 10px;
+      text-align: center;
+    }
+
+    .logo {
+      width: 150%;
+      max-width: 800px;
+      height: auto;
+      margin-bottom: 15px;
+    }
+
+    .college-name h2 {
+      font-size: clamp(15px, 4vw, 18px);
+      background: linear-gradient(135deg, #f2ea04, #ffffff, #5cc010);
+      background-size: 400% auto;
+      color: transparent;
+      background-clip: text;
+      -webkit-background-clip: text;
+      animation: sparkle 2s linear infinite, glow 2.5s ease-in-out infinite;
+      margin: 0;
+    }
+
+    @keyframes sparkle {
+      0% { background-position: 0% center; }
+      100% { background-position: 200% center; }
+    }
+
+    @keyframes glow {
+      0%, 100% {
+        text-shadow: 0 0 5px #aeb237, 0 0 10px #e2d419, 0 0 15px #9c0909;
+      }
+      50% {
+        text-shadow: 0 0 15px #eee717, 0 0 25px #ffee00, 0 0 30px #b91313;
+      }
+    }
+
+    .menu-toggle {
+      position: absolute;
+      bottom: 10px;
+      left: 10px;
+      background: none;
+      border: none;
+      color: white;
+      font-size: 28px;
+      cursor: pointer;
+    }
+
+    /* Hide toggle on desktop/laptop */
+    @media (min-width: 769px) {
+      .menu-toggle {
+        display: none !important;
+      }
+    }
+
+    .navbar {
+      background-color: #004080;
+      text-align: center;
+      padding: 5px 0;
+      display: flex;
+      flex-direction: row;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+
+    .navbar a {
+      color: white;
+      margin: 0 15px;
+      text-decoration: none;
+      font-weight: bold;
+      padding: 10px;
+    }
+
+    @media (max-width: 768px) {
+      .navbar {
+        display: none;
+        flex-direction: column;
+      }
+
+      .navbar.active {
+        display: flex;
+      }
+
+      .navbar a {
+        padding: 12px;
+        border-top: 1px solid #0066cc;
+      }
+    }
+
+    section {
+      background: white;
+      padding: 20px;
+      margin: 20px;
+      border-left: 5px solid #002b5c;
+    }
+
+    footer {
+      background-color: #002b5c;
+      color: white;
+      text-align: center;
+      padding: 10px;
+    }
+
+    #loading-screen {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(255, 255, 255, 0.9);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      z-index: 9999;
+    }
+
+    .loader {
+      width: 60px;
+      height: 60px;
+      border: 6px solid #cbdc43;
+      border-top: 6px solid transparent;
+      border-radius: 50%;
+      animation: spin 1s linear infinite, flash 0.5s infinite alternate;
+    }
+
+    @keyframes spin {
+      to { transform: rotate(360deg); }
+    }
+
+    @keyframes flash {
+      from { box-shadow: 0 0 10px #f4f586, 0 0 20px #e6eb99; }
+      to { box-shadow: 0 0 20px #e2f082, 0 0 40px #c0e03d; }
+    }
+
+    .gallery-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 15px;
+      margin-top: 20px;
+    }
+
+    .gallery-grid img {
+      width: 100%;
+      border-radius: 8px;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+      transition: transform 0.3s ease;
+    }
+
+    .gallery-grid img:hover {
+      transform: scale(1.05);
+    }
+  </style>
+</head>
+<body>
+
+  <!-- 🔷 Header -->
+  <header class="header">
+    <img src="Pictures/mecclg.png" alt="College Logo" class="logo">
+    <div class="college-name">
+      <h2>DEPARTMENT OF INFORMATION TECHNOLOGY</h2>
+    </div>
+    <button class="menu-toggle" onclick="toggleMenu()">☰</button>
+  </header>
+
+  <!-- 🔷 Loading -->
+  <div id="loading-screen">
+    <div class="loader"></div>
+  </div>
+
+  <!-- 🔷 Navigation Bar -->
+  <nav class="navbar" id="navbar">
+    <a href="index.html">Home</a>
+    <a href="about.html">About</a>
+    <a href="events.html">Events</a>
+    <a href="news.html">News</a>
+    <a href="gallery.html">Gallery</a>
+    <a href="eventsregister.html">Events Register</a>
+    <a href="faculty.html">Faculty</a>
+    <a href="login.html">Student Login</a>
+    <a href="notes.html">Notes</a>
+    <a href="contact.html">Contact Us</a>
+  </nav>
+
+  <!-- 🔷 Main Content -->
+  <main>
+    <section class="gallery">
+      <center><h2>Photo Gallery</h2></center>
+
+
+      <p><h3>Laboratory and Class Rooms</h3></p>
+
+      <div class="gallery-grid">
+        <img src="Pictures/pic.jpg" alt="IV">
+        <img src="Pictures/download (1).jpeg" alt="Project Expo">
+        <img src="Pictures/download (3).jpeg" alt="Seminar">
+        <img src="Pictures/download (4).jpeg" alt="Farewell Day">
+        <img src="Pictures/download.jpeg" alt="Coding Contest">
+        
+        <!-- Add more images as needed -->
+      </div>
+      <br><br>
+      <p><h3>Prize Winning Photos</h3></p>
+
+      <div class="gallery-grid">
+        <img src="Pictures/pic.jpg" alt="IV">
+        <img src="Pictures/download (1).jpeg" alt="Project Expo">
+        <img src="Pictures/download (3).jpeg" alt="Seminar">
+        <img src="Pictures/download (4).jpeg" alt="Farewell Day">
+        <img src="Pictures/download.jpeg" alt="Coding Contest">
+        
+        <!-- Add more images as needed -->
+      </div>
+      <br><br>
+    
+      <p><h3>Industrial Visit and Tour Photos</h3></p>
+      <br>
+        <div class="gallery-grid">
+        <img src="Pictures/pic.jpg" alt="IV">
+        <img src="Pictures/download (1).jpeg" alt="Project Expo">
+        <img src="Pictures/download (3).jpeg" alt="Seminar">
+        <img src="Pictures/download (4).jpeg" alt="Farewell Day">
+        <img src="Pictures/download.jpeg" alt="Coding Contest">
+        
+        <!-- Add more images as needed -->
+      </div>
+
+
+    </section>
+  </main>
+
+  <!-- 🔷 Footer -->
+  <footer>
+    <p>© 2025 Mailam Engineering College. All Rights Reserved.</p>
+  </footer>
+
+  <!-- ✅ Developer Credit -->
+  <div style="text-align:center; font-size:14px; color:#444; margin:10px 0 30px;">
+    <strong>DEVELOPED BY "A" BOTTERS</strong>
+  </div>
+
+  <!-- 🔷 Toggle Script -->
+  <script>
+    function toggleMenu() {
+      document.getElementById("navbar").classList.toggle("active");
+    }
+
+    window.addEventListener("load", () => {
+      const loader = document.getElementById("loading-screen");
+      if (loader) {
+        loader.style.opacity = "0";
+        setTimeout(() => loader.style.display = "none", 500);
+      }
+    });
+
+    document.addEventListener("contextmenu", e => e.preventDefault());
+
+  document.onkeydown = function(e) {
+    if (
+      e.key === "F12" || 
+      (e.ctrlKey && e.shiftKey && (e.key === "I" || e.key === "J" || e.key === "C")) || 
+      (e.ctrlKey && e.key === "U")
+    ) {
+      return false;
+    }
+  };
+  </script>
+
+</body>
+</html>

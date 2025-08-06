@@ -1,0 +1,373 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Student Marksheet Portal - Mailam Engineering College</title>
+  <!-- ✅ Favicon -->
+  <link rel="icon" href="Pictures/p.png" type="image/png" />
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <style>
+     html, body {
+      margin: 0;
+      padding: 0;
+      max-width: 100%;
+      overflow-x: hidden;
+      font-family: Arial, sans-serif;
+      background: #f5f4f4;
+    }
+    body {
+      font-family: Arial, sans-serif;
+      background: #f5f4f4;
+      margin: 0;
+      padding: 0;
+    }
+
+    .header {
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      background-color: #02244b;
+      color: white;
+      padding: 70px 10px;
+      text-align: center;
+    }
+
+    .logo {
+      width: 150%;
+      max-width: 800px;
+      height: auto;
+      margin-bottom: 15px;
+    }
+
+    .college-name h2 {
+      font-size: clamp(15px, 4vw, 18px);
+      background: linear-gradient(135deg, #f2ea04, #ffffff, #5cc010);
+      background-size: 400% auto;
+      color: transparent;
+      background-clip: text;
+      -webkit-background-clip: text;
+      animation: sparkle 2s linear infinite, glow 2.5s ease-in-out infinite;
+      margin: 0;
+    }
+
+    @keyframes sparkle {
+      0% { background-position: 0% center; }
+      100% { background-position: 200% center; }
+    }
+
+    @keyframes glow {
+      0%, 100% {
+        text-shadow: 0 0 5px #aeb237, 0 0 10px #e2d419, 0 0 15px #9c0909;
+      }
+      50% {
+        text-shadow: 0 0 15px #eee717, 0 0 25px #ffee00, 0 0 30px #b91313;
+      }
+    }
+
+    .menu-toggle {
+      position:left;
+      text-align: left;
+      background: none;
+     
+      border: none;
+      color: white;
+      font-size: 28px;
+      cursor: pointer;
+    }
+
+    .navbar {
+      background-color: #004080;
+      text-align: center;
+      padding: 5px 0;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+
+    .navbar a {
+      color: white;
+      margin: 0 15px;
+      text-decoration: none;
+      font-weight: bold;
+      padding: 10px;
+    }
+
+    @media (max-width: 768px) {
+      .navbar {
+        display: none;
+        flex-direction: column;
+      }
+
+      .navbar.active {
+        display: flex;
+      }
+
+      .navbar a {
+        padding: 12px;
+        border-top: 1px solid #0066cc;
+      }
+    }
+
+    .container {
+      max-width: 600px;
+      margin: 40px auto;
+      background-color: #fff;
+      border-radius: 10px;
+      padding: 30px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    }
+
+    label {
+      display: block;
+      margin: 15px 0 5px;
+      font-weight: bold;
+    }
+
+    input, select, button {
+      width: 100%;
+      padding: 10px;
+      margin-top: 5px;
+      font-size: 16px;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+    }
+
+    button {
+      background-color: #02244b;
+      color: white;
+      margin-top: 20px;
+      cursor: pointer;
+      transition: background 0.3s;
+    }
+
+    button:hover {
+      background-color: #011c3a;
+    }
+
+    .info, .marks {
+      margin-top: 30px;
+    }
+
+    .info table, .marks table {
+      width: 100%;
+      border-collapse: collapse;
+    }
+
+    .info th, .info td, .marks th, .marks td {
+      border: 1px solid #ccc;
+      padding: 10px;
+      text-align: left;
+    }
+
+    .info th, .marks th {
+      background-color: #004080;
+      color: white;
+    }
+
+    .info tr:nth-child(even), .marks tr:nth-child(even) {
+      background-color: #f9f9f9;
+    }
+
+    .error {
+      color: red;
+      margin-top: 10px;
+      text-align: center;
+    }
+
+    footer {
+      background-color: #002b5c;
+      color: white;
+      text-align: center;
+      padding: 10px;
+    }
+
+    .loading-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      background: rgba(0, 0, 0, 0.6);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      font-size: 20px;
+      font-weight: bold;
+      z-index: 9999;
+      display: none;
+    }
+
+    /* ✅ Hide toggle button on larger screens */
+    @media (min-width: 769px) {
+      .menu-toggle {
+        display: none !important;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <header class="header">
+    <img src="Pictures/mecclg.png" alt="College Logo" class="logo">
+    <div class="college-name">
+      <h2>DEPARTMENT OF INFORMATION TECHNOLOGY</h2>
+    </div>
+    <button class="menu-toggle" onclick="toggleMenu()">☰</button>
+  </header>
+
+  <nav class="navbar" id="navbar">
+    <a href="index.html">Home</a>
+    <a href="about.html">About</a>
+    <a href="events.html">Events</a>
+    <a href="news.html">News</a>
+    <a href="gallery.html">Gallery</a>
+    <a href="eventsregister.html">Events Register</a>
+    <a href="faculty.html">Faculty</a>
+    <a href="login.html">Student Login</a>
+    <a href="notes.html">Notes</a>
+    <a href="contact.html">Contact Us</a>
+  </nav>
+
+  <div class="container">
+    <h2><center>Login</center></h2>
+    <label for="year">Select Year</label>
+    <select id="year">
+      <option value="1st">1st Year</option>
+      <option value="2nd">2nd Year</option>
+      <option value="3rd">3rd Year</option>
+      <option value="Final">Final Year</option>
+    </select>
+
+    <label for="semester">Select Semester</label>
+    <select id="semester">
+      <option value="ODD">ODD Semester</option>
+      <option value="EVEN">EVEN Semester</option>
+    </select>
+
+    <label for="regno">Registration Number</label>
+    <input type="text" id="regno" placeholder="Enter Registration Number">
+
+    <label for="dob">Date of Birth (dd-mm-yyyy)</label>
+    <input type="text" id="dob" placeholder="e.g., 22-06-2005" pattern="\d{2}/\d{2}/\d{4}" required>
+    <small style="color:gray;">Use format: dd-mm-yyyy</small>
+
+    <button onclick="login()">Login</button>
+
+    <div class="error" id="errorMsg"></div>
+    <div class="info" id="studentInfo"></div>
+    <div class="marks" id="marksTable"></div>
+  </div>
+
+  <footer>
+    <p>© 2025 Mailam Engineering College. All Rights Reserved.</p>
+  </footer>
+
+  <div style="text-align:center; font-size:14px; color:#272121; margin:10px 0 30px;">
+    <strong>DEVELOPED BY "A" BOTTERS</strong>
+  </div>
+
+  <div class="loading-overlay" id="loadingScreen">Verifying... Please wait...</div>
+
+  <script>
+    const scriptURLs = {
+      "1st_ODD": "https://script.google.com/macros/s/AKfycbxP2yj2rb_12CU7DcRHuDaibUZDK_TPHjdIX7JzHSGEMYfEbmO1dAx11PpqfcdpNVQX/exec",
+      "1st_EVEN": "https://script.google.com/macros/s/AKfycbzWLLQyuiYOGqa94CsjJOZQuR2Hn9aZI0jmO1Vzgw4gQELBgavpuTYB6E9gGF_SHcv0/exec",
+      "2nd_ODD": "https://script.google.com/macros/s/AKfycbyVuudBDDrKo6x7skP0qj_4fBxQs3WzoQbCnHsYdCYCqU_HoSOu3l9UYhxfJ-4qWTaK/exec",
+      "2nd_EVEN": "https://script.google.com/macros/s/AKfycbxeR1mAZfTJybLeoj1P1W8IZKjspRDSQGrAQB0nGWqwFx8ohblsqy6Ssmgq83MM6DMD/exec",
+      "3rd_ODD": "https://script.google.com/macros/s/AKfycbzjOITHajLXDRZyuV_4qyPIen0cIorEP7BwPO5wrtFmQHSmXP4EuLh94Wn0J94nqtGFgw/exec",
+      "3rd_EVEN": "https://script.google.com/macros/s/AKfycbw9k1AN7g7TNmxBVUFJiHzf2_xt1JrV44pws4SlFJvb2gORrgh0ybZ_wN4wXT_39HUF/exec",
+      "Final_ODD": "https://script.google.com/macros/s/AKfycbySmwZQd9RSjxGWYOJO7XIJAFSsPALi0BbUBwyEpJt9tcg_V2Ba_5aA-tSxu4m4ZFqxmA/exec",
+      "Final_EVEN": "https://script.google.com/macros/s/AKfycbxS7iTbX7JBA_f3sD0LFbxR4cDukCMCNGiTv_KDSCaF6JRWzWGZBIYkE4G_oau_3hiRkw/exec"
+    };
+
+    function toggleMenu() {
+      document.getElementById("navbar").classList.toggle("active");
+    }
+
+    function isValidDOBStructure(dob) {
+      return /^\d{2}[-/]\d{2}[-/]\d{4}$/.test(dob);
+    }
+
+    async function login() {
+      const year = document.getElementById('year').value;
+      const semester = document.getElementById('semester').value;
+      const regno = document.getElementById('regno').value.trim().toUpperCase();
+      const dobInput = document.getElementById('dob').value.trim();
+
+      const errorBox = document.getElementById('errorMsg');
+      const infoBox = document.getElementById('studentInfo');
+      const marksBox = document.getElementById('marksTable');
+      const loadingScreen = document.getElementById('loadingScreen');
+
+      errorBox.textContent = '';
+      infoBox.innerHTML = '';
+      marksBox.innerHTML = '';
+
+      if (!regno || !isValidDOBStructure(dobInput)) {
+        errorBox.textContent = "Please enter Registration Number and DOB in dd-mm-yyyy or dd/mm/yyyy format.";
+        return;
+      }
+
+      const key = `${year}_${semester}`;
+      const url = scriptURLs[key];
+
+      if (!url) {
+        errorBox.textContent = `Backend URL for ${year} ${semester} semester is not configured.`;
+        return;
+      }
+
+      loadingScreen.style.display = 'flex';
+
+      try {
+        const response = await fetch(`${url}?regno=${encodeURIComponent(regno)}&dob=${encodeURIComponent(dobInput)}`);
+        if (!response.ok) throw new Error(`HTTP ${response.status} - ${response.statusText}`);
+        const result = await response.json();
+
+        if (result.success && result.student) {
+          const student = result.student;
+          let table = `<table><tr><th>Content</th><th>Value</th></tr>`;
+          for (const key in student) {
+            if (key !== "Marks") {
+              table += `<tr><td>${key}</td><td>${student[key]}</td></tr>`;
+            }
+          }
+          table += `</table>`;
+          infoBox.innerHTML = table;
+
+          const marks = student.Marks;
+          if (marks && typeof marks === 'object') {
+            let marksTable = `<table><tr><th>Subject</th><th>Marks</th></tr>`;
+            for (const subject in marks) {
+              marksTable += `<tr><td>${subject}</td><td>${marks[subject]}</td></tr>`;
+            }
+            marksTable += `</table>`;
+            marksBox.innerHTML = marksTable;
+          }
+        } else {
+          errorBox.textContent = result.message || "Invalid credentials. Please check Reg. No. and DOB.";
+        }
+      } catch (error) {
+        errorBox.textContent = `Error: ${error.message}. Please try again later.`;
+      } finally {
+        loadingScreen.style.display = 'none';
+      }
+    }
+
+    document.addEventListener("contextmenu", e => e.preventDefault());
+
+  document.onkeydown = function(e) {
+    if (
+      e.key === "F12" || 
+      (e.ctrlKey && e.shiftKey && (e.key === "I" || e.key === "J" || e.key === "C")) || 
+      (e.ctrlKey && e.key === "U")
+    ) {
+      return false;
+    }
+  };
+  </script>
+
+</body>
+</html>

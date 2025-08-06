@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Celesta'25 - Mailam Engineering College</title>
+  <!-- ✅ Favicon -->
+  <link rel="icon" href="Pictures/p.png" type="image/png" />
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <style>
+     html, body {
+      margin: 0;
+      padding: 0;
+      max-width: 100%;
+      overflow-x: hidden;
+      font-family: Arial, sans-serif;
+      background: #f5f4f4;
+    }
+    body {
+      font-family: Arial, sans-serif;
+      background: #f5f4f4;
+      margin: 0;
+      padding: 0;
+    }
+
+    .header {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      background-color: #02244b;
+      color: white;
+      padding: 70px 10px;
+      text-align: center;
+      position: relative;
+    }
+
+    .logo {
+      width: 150%;
+      max-width: 800px;
+      height: auto;
+      margin-bottom: 15px;
+    }
+
+    .college-name h2 {
+      font-size: clamp(15px, 4vw, 18px);
+      background: linear-gradient(135deg, #f2ea04, #ffffff, #5cc010);
+      background-size: 400% auto;
+      color: transparent;
+      background-clip: text;
+      -webkit-background-clip: text;
+      animation: sparkle 2s linear infinite, glow 2.5s ease-in-out infinite;
+      margin: 0;
+    }
+
+    @keyframes sparkle {
+      0% { background-position: 0% center; }
+      100% { background-position: 200% center; }
+    }
+
+    @keyframes glow {
+      0%, 100% {
+        text-shadow: 0 0 5px #aeb237, 0 0 10px #e2d419, 0 0 15px #9c0909;
+      }
+      50% {
+        text-shadow: 0 0 15px #eee717, 0 0 25px #ffee00, 0 0 30px #b91313;
+      }
+    }
+
+    .menu-toggle {
+      position: absolute;
+      bottom: 10px;
+      left: 10px;
+      background: none;
+      border: none;
+      color: white;
+      font-size: 28px;
+      cursor: pointer;
+    }
+
+    /* 🔒 Hide toggle menu on desktop/laptop */
+    @media (min-width: 769px) {
+      .menu-toggle {
+        display: none !important;
+      }
+    }
+
+    .navbar {
+      background-color: #004080;
+      text-align: center;
+      padding: 5px 0;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+
+    .navbar a {
+      color: white;
+      margin: 0 15px;
+      text-decoration: none;
+      font-weight: bold;
+      padding: 10px;
+    }
+
+    @media (max-width: 768px) {
+      .navbar {
+        display: none;
+        flex-direction: column;
+      }
+
+      .navbar.active {
+        display: flex;
+      }
+
+      .navbar a {
+        padding: 12px;
+        border-top: 1px solid #0066cc;
+      }
+    }
+
+    main {
+      padding: 30px 20px;
+      max-width: 1000px;
+      margin: auto;
+    }
+
+    .event-title-row {
+      display: flex;
+      align-items: center;
+      justify-content: flex-start;
+      flex-wrap: wrap;
+      gap: 15px;
+      margin-bottom: 20px;
+    }
+
+    .back-button-inline {
+      font-size: 16px;
+      background-color: #004080;
+      color: white;
+      padding: 8px 14px;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+      text-decoration: none;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+      transition: background-color 0.3s ease;
+    }
+
+    .back-button-inline:hover {
+      background-color: #0066cc;
+    }
+
+    .event-title {
+      font-size: 28px;
+      color: #002b5c;
+    }
+
+    .event-info {
+      background-color: white;
+      padding: 20px;
+      border-left: 5px solid #004080;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+      border-radius: 10px;
+      margin-bottom: 30px;
+    }
+
+    .event-info p {
+      font-size: 16px;
+      line-height: 1.7;
+      color: #333;
+    }
+
+    .event-info img {
+      max-width: 100%;
+      height: auto;
+      border-radius: 8px;
+      margin-top: 15px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+    }
+
+    .gallery {
+      text-align: center;
+    }
+
+    .gallery h3 {
+      color: #002b5c;
+      margin-bottom: 20px;
+    }
+
+    .gallery img {
+      width: 240px;
+      height: 160px;
+      object-fit: cover;
+      margin: 10px;
+      border-radius: 8px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+    }
+
+    footer {
+      background-color: #002b5c;
+      color: white;
+      text-align: center;
+      padding: 5px;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- 🔷 Header -->
+  <header class="header">
+    <img src="Pictures/mecclg.png" alt="College Logo" class="logo">
+    <div class="college-name">
+      <h2>DEPARTMENT OF INFORMATION TECHNOLOGY</h2>
+    </div>
+    <button class="menu-toggle" onclick="toggleMenu()">☰</button>
+  </header>
+
+  <!-- 🔷 Navigation -->
+  <nav class="navbar" id="navbar">
+    <a href="index.html">Home</a>
+    <a href="about.html">About</a>
+    <a href="events.html">Events</a>
+    <a href="news.html">News</a>
+    <a href="gallery.html">Gallery</a>
+    <a href="eventsregister.html">Events Register</a>
+    <a href="faculty.html">Faculty</a>
+    <a href="login.html">Student Login</a>
+    <a href="notes.html">Notes</a>
+    <a href="contact.html">Contact Us</a>
+  </nav>
+
+  <!-- 🔷 Event Content -->
+  <main>
+    <div class="event-title-row">
+      <a href="javascript:history.back()" class="back-button-inline">← Back</a>
+      <div class="event-title">Celesta'25 - National Level Technical Symposium</div>
+    </div>
+
+    <div class="event-info">
+      <p><strong>Date:</strong> September 13, 2025</p>
+      <p><strong>Venue:</strong> IT Lab 1 & 2, Tech Block, Mailam Engineering College</p>
+      <p><strong>Prizes:</strong> Exciting Cash Awards, Certificates & Goodies</p>
+      <p><strong>Description:</strong><br>
+        Celesta'25 is a prestigious national-level symposium hosted by the Department of Information Technology, featuring an electrifying lineup of events like coding marathons, paper presentations, gaming battles, project expos, and technical debates. It offers a platform for innovation, skill display, and networking with IT aspirants across the country.
+      </p>
+      <p>Participants will have the opportunity to interact with industry professionals, attend expert talks, and showcase their talents in front of esteemed judges. Be a part of the celebration of technology and intellect!</p>
+    </div>
+
+    <!-- 🔷 Gallery -->
+    <div class="gallery">
+      <h3>Glimpses of Celesta'25</h3>
+      <img src="Pictures/download (1).jpeg" alt="Celesta Photo 1">
+      <img src="Pictures/download (2).jpeg" alt="Celesta Photo 2">
+      <img src="Pictures/download (3).jpeg" alt="Celesta Photo 3">
+    </div>
+  </main>
+
+  <!-- 🔷 Footer -->
+  <footer>
+    <p>© 2025 Mailam Engineering College. All Rights Reserved.</p>
+    <div style="text-align:center; font-size:14px; color:#ffffff; margin:10px 0 30px;">
+      <strong>DEVELOPED BY "A" BOTTERS</strong>
+    </div>
+  </footer>
+
+  <!-- 🔷 Script -->
+  <script>
+    function toggleMenu() {
+      document.getElementById("navbar").classList.toggle("active");
+    }
+
+    document.addEventListener("contextmenu", e => e.preventDefault());
+
+  document.onkeydown = function(e) {
+    if (
+      e.key === "F12" || 
+      (e.ctrlKey && e.shiftKey && (e.key === "I" || e.key === "J" || e.key === "C")) || 
+      (e.ctrlKey && e.key === "U")
+    ) {
+      return false;
+    }
+  };
+  </script>
+
+</body>
+</html>

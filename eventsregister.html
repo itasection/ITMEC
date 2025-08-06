@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>CELESTA'25 - Event Registration</title>
+  <!-- ✅ Favicon -->
+  <link rel="icon" href="Pictures/p.png" type="image/png" />
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: linear-gradient(135deg, #f0f4ff, #e0eaff);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+    }
+
+    .container {
+      text-align: center;
+      background: white;
+      padding: 40px;
+      border-radius: 16px;
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
+    }
+
+    h1 {
+      margin-bottom: 30px;
+      font-size: 28px;
+      color: #002b80;
+    }
+
+    .btn {
+      display: block;
+      width: 250px;
+      padding: 15px;
+      margin: 20px auto;
+      font-size: 18px;
+      color: white;
+      background-color: #0044cc;
+      border: none;
+      border-radius: 10px;
+      cursor: pointer;
+      transition: 0.3s ease;
+      text-decoration: none;
+    }
+
+    .btn:hover {
+      background-color: #003399;
+    }
+
+    @media (max-width: 500px) {
+      .btn {
+        width: 90%;
+        font-size: 16px;
+      }
+    }
+
+    .back-arrow {
+  position: absolute;
+  top: 20px;
+  left: 20px;
+  font-size: 18px;
+  color: #0044cc;
+  text-decoration: none;
+  font-weight: bold;
+  transition: 0.3s ease;
+}
+
+.back-arrow:hover {
+  color: #002b80;
+}
+
+  </style>
+</head>
+<body>
+
+  <a href="javascript:history.back()" class="back-arrow">&#8592; Back</a>
+
+  <div class="container">
+    <h1>CELESTA'25 - Event Registration</h1>
+    <a href="Internal1.html" class="btn">Internal College Registration</a>
+    <a href="external.html" class="btn">External College Registration</a>
+  </div>
+</body>
+</html>
