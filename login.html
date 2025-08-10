@@ -206,6 +206,31 @@
         display: none !important;
       }
     }
+
+
+    .marquee-container {
+      overflow: hidden;
+      white-space: nowrap;
+      background-color: #02244b;
+      padding: 12px 0;
+    }
+
+    .glitter-marquee {
+      display: inline-block;
+      padding-left: 100%;
+      font-size: 17px;
+      font-weight: bold;
+      background: linear-gradient(90deg, #eaeae6);
+      background-size: 400% auto;
+      color: transparent;
+      background-clip: text;
+      -webkit-background-clip: text;
+      animation: scroll-left 23s linear infinite, shimmer 5s infinite linear;
+    }
+    @keyframes scroll-left {
+      0% { transform: translateX(0%); }
+      100% { transform: translateX(-100%); }
+    }
   </style>
 </head>
 <body>
@@ -230,6 +255,13 @@
     <a href="notes.html">Notes</a>
     <a href="contact.html">Contact Us</a>
   </nav>
+
+  <!-- 🔷 Marquee -->
+  <div class="marquee-container">
+    <div class="glitter-marquee">
+      📢ATTENTION: FOR SECOND YEAR STUDENTS, The Result for <strong>Semester 1</strong> has been Published along with CGPA.&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;📢ATTENTION: FOR THIRD YEAR STUDENTS, The Result for <strong>till Semester 3</strong> has been Published along with CGPA. Check Here..
+    </div>
+  </div>
 
   <div class="container">
     <h2><center>Login</center></h2>
@@ -371,6 +403,7 @@
 
 </body>
 </html>
+
 
 
 
