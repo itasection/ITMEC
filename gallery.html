@@ -8,7 +8,6 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   <style>
-
      html, body {
       margin: 0;
       padding: 0;
@@ -17,8 +16,8 @@
       font-family: Arial, sans-serif;
       background: #f5f4f4;
     }
+
     body {
-      font-family: Arial, sans-serif;
       background: #f5f4f4;
       margin: 0;
       padding: 0;
@@ -79,7 +78,6 @@
       cursor: pointer;
     }
 
-    /* Hide toggle on desktop/laptop */
     @media (min-width: 769px) {
       .menu-toggle {
         display: none !important;
@@ -172,15 +170,32 @@
       margin-top: 20px;
     }
 
-    .gallery-grid img {
+    .image-box {
+      text-align: center;
+    }
+
+    .image-box img {
       width: 100%;
       border-radius: 8px;
       box-shadow: 0 4px 8px rgba(0,0,0,0.2);
       transition: transform 0.3s ease;
     }
 
-    .gallery-grid img:hover {
+    .image-box:hover img {
       transform: scale(1.05);
+    }
+
+    .hover-text {
+      margin-top: 8px;
+      font-size: 13px;
+      font-weight: bold;
+      color: #002b5c;
+      opacity: 0;
+      transition: opacity 0.3s ease;
+    }
+
+    .image-box:hover .hover-text {
+      opacity: 1;
     }
   </style>
 </head>
@@ -219,45 +234,79 @@
     <section class="gallery">
       <center><h2>Photo Gallery</h2></center>
 
-
       <p><h3>Laboratory and Class Rooms</h3></p>
-
       <div class="gallery-grid">
-        <img src="Pictures/pic.jpg" alt="IV">
-        <img src="Pictures/download (1).jpeg" alt="Project Expo">
-        <img src="Pictures/download (3).jpeg" alt="Seminar">
-        <img src="Pictures/download (4).jpeg" alt="Farewell Day">
-        <img src="Pictures/download.jpeg" alt="Coding Contest">
-        
-        <!-- Add more images as needed -->
+        <div class="image-box">
+          <img src="Pictures/pic.jpg" alt="IV">
+          <div class="hover-text">Laboratory</div>
+        </div>
+        <div class="image-box">
+          <img src="Pictures/download (1).jpeg" alt="Project Expo">
+          <div class="hover-text">Project Expo</div>
+        </div>
+        <div class="image-box">
+          <img src="Pictures/download (3).jpeg" alt="Seminar">
+          <div class="hover-text">Seminar</div>
+        </div>
+        <div class="image-box">
+          <img src="Pictures/download (4).jpeg" alt="Farewell Day">
+          <div class="hover-text">Farewell Day</div>
+        </div>
+        <div class="image-box">
+          <img src="Pictures/download.jpeg" alt="Coding Contest">
+          <div class="hover-text">Coding Contest</div>
+        </div>
       </div>
+
       <br><br>
       <p><h3>Prize Winning Photos</h3></p>
-
       <div class="gallery-grid">
-        <img src="Pictures/pic.jpg" alt="IV">
-        <img src="Pictures/download (1).jpeg" alt="Project Expo">
-        <img src="Pictures/download (3).jpeg" alt="Seminar">
-        <img src="Pictures/download (4).jpeg" alt="Farewell Day">
-        <img src="Pictures/download.jpeg" alt="Coding Contest">
-        
-        <!-- Add more images as needed -->
+        <div class="image-box">
+          <img src="Pictures/pic.jpg" alt="IV">
+          <div class="hover-text">IV</div>
+        </div>
+        <div class="image-box">
+          <img src="Pictures/download (1).jpeg" alt="Project Expo">
+          <div class="hover-text">Project Expo</div>
+        </div>
+        <div class="image-box">
+          <img src="Pictures/download (3).jpeg" alt="Seminar">
+          <div class="hover-text">Seminar</div>
+        </div>
+        <div class="image-box">
+          <img src="Pictures/download (4).jpeg" alt="Farewell Day">
+          <div class="hover-text">Farewell Day</div>
+        </div>
+        <div class="image-box">
+          <img src="Pictures/download.jpeg" alt="Coding Contest">
+          <div class="hover-text">Coding Contest</div>
+        </div>
       </div>
+
       <br><br>
-    
       <p><h3>Industrial Visit and Tour Photos</h3></p>
-      <br>
-        <div class="gallery-grid">
-        <img src="iv.jpg" alt="IV">
-        <img src="Pictures/download (1).jpeg" alt="Project Expo">
-        <img src="Pictures/download (3).jpeg" alt="Seminar">
-        <img src="Pictures/download (4).jpeg" alt="Farewell Day">
-        <img src="Pictures/download.jpeg" alt="Coding Contest">
-        
-        <!-- Add more images as needed -->
+      <div class="gallery-grid">
+        <div class="image-box">
+          <img src="iv.jpg" alt="IV">
+          <div class="hover-text">2023 Batch Industrial Visit</div>
+        </div>
+        <div class="image-box">
+          <img src="Pictures/download (1).jpeg" alt="Project Expo">
+          <div class="hover-text">Tour</div>
+        </div>
+        <div class="image-box">
+          <img src="Pictures/download (3).jpeg" alt="Seminar">
+          <div class="hover-text">Friends</div>
+        </div>
+        <div class="image-box">
+          <img src="Pictures/download (4).jpeg" alt="Farewell Day">
+          <div class="hover-text">Happy Moments</div>
+        </div>
+        <div class="image-box">
+          <img src="Pictures/download.jpeg" alt="Coding Contest">
+          <div class="hover-text">Fun Times</div>
+        </div>
       </div>
-
-
     </section>
   </main>
 
@@ -287,18 +336,15 @@
 
     document.addEventListener("contextmenu", e => e.preventDefault());
 
-  document.onkeydown = function(e) {
-    if (
-      e.key === "F12" || 
-      (e.ctrlKey && e.shiftKey && (e.key === "I" || e.key === "J" || e.key === "C")) || 
-      (e.ctrlKey && e.key === "U")
-    ) {
-      return false;
-    }
-  };
+    document.onkeydown = function(e) {
+      if (
+        e.key === "F12" || 
+        (e.ctrlKey && e.shiftKey && (e.key === "I" || e.key === "J" || e.key === "C")) || 
+        (e.ctrlKey && e.key === "U")
+      ) {
+        return false;
+      }
+    };
   </script>
-
 </body>
 </html>
-
-
