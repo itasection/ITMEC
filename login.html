@@ -207,7 +207,6 @@
       }
     }
 
-
     .marquee-container {
       overflow: hidden;
       white-space: nowrap;
@@ -225,12 +224,14 @@
       color: transparent;
       background-clip: text;
       -webkit-background-clip: text;
-      animation: scroll-left 30s linear infinite, shimmer 5s infinite linear;
+      animation: scroll-left 23s linear infinite, shimmer 5s infinite linear;
     }
     @keyframes scroll-left {
       0% { transform: translateX(0%); }
       100% { transform: translateX(-100%); }
     }
+
+    
   </style>
 </head>
 <body>
@@ -256,15 +257,23 @@
     <a href="contact.html">Contact Us</a>
   </nav>
 
+
   <!-- 🔷 Marquee -->
   <div class="marquee-container">
     <div class="glitter-marquee">
-      📢ATTENTION: FOR SECOND YEAR STUDENTS, The Result till <strong>Semester 2</strong> has been Published along with CGPA.&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;📢ATTENTION: FOR THIRD YEAR STUDENTS, The Result  <strong>till Semester 4</strong> has been Published along with CGPA. Check Here..
+      📢ATTENTION: FOR SECOND YEAR STUDENTS, The Result for <strong>Semester 2</strong> has been Published along with CGPA.&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;📢ATTENTION: FOR THIRD YEAR STUDENTS, The Result for <strong>till Semester 4</strong> has been Published along with CGPA. Check Here..
     </div>
   </div>
+  
 
   <div class="container">
     <h2><center>Login</center></h2>
+    <label for="regulation">Select Regulation</label>
+    <select id="regulation">
+      <option value="21th">21 Regulation </option>
+      <option value="25th">25 Regulation </option>
+      
+    </select>
     <label for="year">Select Year</label>
     <select id="year">
       <option value="1st">1st Year</option>
@@ -283,7 +292,7 @@
     <input type="text" id="regno" placeholder="Enter Registration Number">
 
     <label for="dob">Date of Birth (dd-mm-yyyy)</label>
-    <input type="text" id="dob" placeholder="e.g., 22-06-2005" pattern="\d{2}/\d{2}/\d{4}" required>
+    <input type="text" id="dob" placeholder="e.g., 01-01-2005" pattern="\d{2}/\d{2}/\d{4}" required>
     <small style="color:gray;">Use format: dd-mm-yyyy</small>
 
     <button onclick="login()">Login</button>
@@ -305,14 +314,23 @@
 
   <script>
     const scriptURLs = {
-      "1st_ODD": "https://script.google.com/macros/s/AKfycbxP2yj2rb_12CU7DcRHuDaibUZDK_TPHjdIX7JzHSGEMYfEbmO1dAx11PpqfcdpNVQX/exec",
-      "1st_EVEN": "https://script.google.com/macros/s/AKfycbzWLLQyuiYOGqa94CsjJOZQuR2Hn9aZI0jmO1Vzgw4gQELBgavpuTYB6E9gGF_SHcv0/exec",
-      "2nd_ODD": "https://script.google.com/macros/s/AKfycbyVuudBDDrKo6x7skP0qj_4fBxQs3WzoQbCnHsYdCYCqU_HoSOu3l9UYhxfJ-4qWTaK/exec",
-      "2nd_EVEN": "https://script.google.com/macros/s/AKfycbxeR1mAZfTJybLeoj1P1W8IZKjspRDSQGrAQB0nGWqwFx8ohblsqy6Ssmgq83MM6DMD/exec",
-      "3rd_ODD": "https://script.google.com/macros/s/AKfycbzjOITHajLXDRZyuV_4qyPIen0cIorEP7BwPO5wrtFmQHSmXP4EuLh94Wn0J94nqtGFgw/exec",
-      "3rd_EVEN": "https://script.google.com/macros/s/AKfycbw9k1AN7g7TNmxBVUFJiHzf2_xt1JrV44pws4SlFJvb2gORrgh0ybZ_wN4wXT_39HUF/exec",
-      "Final_ODD": "https://script.google.com/macros/s/AKfycbySmwZQd9RSjxGWYOJO7XIJAFSsPALi0BbUBwyEpJt9tcg_V2Ba_5aA-tSxu4m4ZFqxmA/exec",
-      "Final_EVEN": "https://script.google.com/macros/s/AKfycbxS7iTbX7JBA_f3sD0LFbxR4cDukCMCNGiTv_KDSCaF6JRWzWGZBIYkE4G_oau_3hiRkw/exec"
+      "21th_1st_ODD": "https://script.google.com/macros/s/AKfycbxP2yj2rb_12CU7DcRHuDaibUZDK_TPHjdIX7JzHSGEMYfEbmO1dAx11PpqfcdpNVQX/exec",
+      "21th_1st_EVEN": "https://script.google.com/macros/s/AKfycbzWLLQyuiYOGqa94CsjJOZQuR2Hn9aZI0jmO1Vzgw4gQELBgavpuTYB6E9gGF_SHcv0/exec",
+      "21th_2nd_ODD": "https://script.google.com/macros/s/AKfycbyVuudBDDrKo6x7skP0qj_4fBxQs3WzoQbCnHsYdCYCqU_HoSOu3l9UYhxfJ-4qWTaK/exec",
+      "21th_2nd_EVEN": "https://script.google.com/macros/s/AKfycbxeR1mAZfTJybLeoj1P1W8IZKjspRDSQGrAQB0nGWqwFx8ohblsqy6Ssmgq83MM6DMD/exec",
+      "21th_3rd_ODD": "https://script.google.com/macros/s/AKfycbzjOITHajLXDRZyuV_4qyPIen0cIorEP7BwPO5wrtFmQHSmXP4EuLh94Wn0J94nqtGFgw/exec",
+      "21th_3rd_EVEN": "https://script.google.com/macros/s/AKfycbw9k1AN7g7TNmxBVUFJiHzf2_xt1JrV44pws4SlFJvb2gORrgh0ybZ_wN4wXT_39HUF/exec",
+      "21th_Final_ODD": "https://script.google.com/macros/s/AKfycbySmwZQd9RSjxGWYOJO7XIJAFSsPALi0BbUBwyEpJt9tcg_V2Ba_5aA-tSxu4m4ZFqxmA/exec",
+      "21th_Final_EVEN": "https://script.google.com/macros/s/AKfycbxS7iTbX7JBA_f3sD0LFbxR4cDukCMCNGiTv_KDSCaF6JRWzWGZBIYkE4G_oau_3hiRkw/exec",
+
+      "25th_1st_ODD": "https://script.google.com/macros/s/AKfycbzLS2cJN3wbI0kL3z9C9xQOo51Hhrfv7smqO0N2Jixd16bwv4XW-nHwzDJgSc3_bAic/exec",
+      "25th_1st_EVEN": "https://script.google.com/macros/s/AKfycbzPXbIQsaBfPBHqsmuvjHkQiF3RcIQ84qSGd6er2GnhypDqSDOydwXRYrvVh-mrG4DiWQ/exec",
+      "25th_2nd_ODD": "https://script.google.com/macros/s/AKfycbzhM_0KNbGhWBUjHUL2q00k5nQWCTkdgvioxN0-7HANi1ZDSCE2TteuGL-8yZCrZuP1/exec",
+      "25th_2nd_EVEN": "https://script.google.com/macros/s/AKfycbyE8-bL3hnkxz3vttdqkru5o5KCsE0DxKE5ZlfnwxxCcSLx9rMsssFPOWEN9C45983c/exec",
+      "25th_3rd_ODD": "https://script.google.com/macros/s/AKfycbxDz2AyR_dd6yt1FVZaV8EXt_HtHiK52XPxZuiaNgaO4TODPPQyKtU8-jJbue2sa6yc/exec",
+      "25th_3rd_EVEN": "https://script.google.com/macros/s/AKfycbzeNw-ZFROTEew9yMiWUZmwje0fHJihM48Er4EDcSOH4PRUaaTnVwt8LZgIhzmgaQG_/exec",
+      "25th_Final_ODD": "https://script.google.com/macros/s/AKfycbxjgrZ4QGo-UHpFWnueYv8gweQ9Y71psBjC_mtaOF8SPGjI27Zb4ybUtnbbs6hMjCY/exec",
+      "25th_Final_EVEN": "https://script.google.com/macros/s/AKfycbxerfk7cqG-Yh2IRm7_BEnx2OZ1SWRBB-_ehvoK9YcOlXZ3QoRJbQmvNMYufJoahsK9vA/exec"
     };
 
     function toggleMenu() {
@@ -324,6 +342,7 @@
     }
 
     async function login() {
+      const regulation = document.getElementById('regulation').value;
       const year = document.getElementById('year').value;
       const semester = document.getElementById('semester').value;
       const regno = document.getElementById('regno').value.trim().toUpperCase();
@@ -343,7 +362,7 @@
         return;
       }
 
-      const key = `${year}_${semester}`;
+      const key = `${regulation}_${year}_${semester}`;
       const url = scriptURLs[key];
 
       if (!url) {
@@ -403,11 +422,3 @@
 
 </body>
 </html>
-
-
-
-
-
-
-
-
