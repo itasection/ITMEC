@@ -235,6 +235,57 @@
       color: #444;
       margin: 10px 0 30px;
     }
+
+    .selection-box {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 15px;
+  background: rgba(255,255,255,0.6);
+  backdrop-filter: blur(10px);
+  padding: 25px;
+  border-radius: 15px;
+  box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+  margin-bottom: 40px;
+}
+
+.selection-box select,
+.selection-box button {
+  padding: 14px 20px;
+  font-size: 16px;
+  border-radius: 10px;
+  border: none;
+  outline: none;
+  min-width: 220px;
+}
+
+.selection-box select {
+  background: #ffffff;
+  box-shadow: inset 0 0 6px rgba(0,0,0,0.1);
+}
+
+.selection-box button {
+  background: linear-gradient(135deg, #007acc, #004080);
+  color: #fff;
+  cursor: pointer;
+  transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.selection-box button:hover {
+  transform: scale(1.05);
+  box-shadow: 0 0 15px rgba(0,122,204,0.6);
+}
+#warning-msg {
+  width: 100%;
+  text-align: center;
+  margin-top: 10px;
+  font-size: 15px;
+  font-weight: bold;
+  color: red;
+  display: none;
+}
+
+
   </style>
 </head>
 <body>
@@ -271,15 +322,34 @@
   <!-- [Your Notes Content Section Remains Here - Unchanged] -->
    <!-- Main -->
   <main>
-    <div class="year-buttons">
-      <button onclick="showSemester('second')">Second Year</button>
-      <button onclick="showSemester('third')">Third Year</button>
-      <button onclick="showSemester('final')">Final Year</button>
-    </div>
+
+    <!-- 🎯 Selection Panel -->
+<div class="selection-box">
+  <select id="regulation">
+    <option value="">Select Regulation</option>
+    <option value="r21">R21 Regulation</option>
+    <option value="r25">R25 Regulation</option>
+  </select>
+
+  <select id="year">
+    <option value="">Select Year</option>
+    <option value="second">Second Year</option>
+    <option value="third">Third Year</option>
+    <option value="final">Final Year</option>
+  </select>
+
+  <button onclick="loadNotes()">📂 Load Notes</button>
+<p id="warning-msg"></p>
+
+
+</div>
+
+<!-- 🔵 R21 -->
+<div class="regulation r21">
 
     <!-- 🔽 Second Year -->
     <div id="second" class="semester-section">
-      <div class="semester-title">Second Year - Odd Semester</div>
+      <div class="semester-title">Second Year - ODD Semester</div>
       <div class="material-list">
         <h4>Materials</h4>
         <ul>
@@ -307,15 +377,15 @@
         </ul>
       </div>
 
-      <div class="semester-title">Second Year - Even Semester</div>
+      <div class="semester-title">Second Year - EVEN Semester</div>
       <div class="material-list">
         <h4>Materials</h4>
         <ul>
           <li><a href="https://drive.google.com/file/d/1LUa7Ss1rwhoeTzUe9hCkOQsfV3z-NsoK/view?usp=sharing">📘 Theory Of Computation</a></li>
           <li><a href="https://drive.google.com/file/d/1IUiURHiVNm0O3V_B1QzlgEZ9oG8YzG18/view?usp=sharing">📘 Artificial Intelligence and Machine Learning</a></li>
           <li><a href="https://drive.google.com/file/d/11EfVwW24FdbOV5TVWdoISuxO9oIAOCm8/view?usp=sharing">📘 Database Management System</a></li>
-          <li><a href="https://drive.google.com/file/d/1eA9Y9F6HbWyBEBUhzo8PxtUCFUw5kqTC/view?usp=sharing">📘 Introduction to Operatin System</a></li>
-          <li><a href="https://drive.google.com/file/d/1pCsQfahKeSBQhH9pUP48MkATD0MnwKru/view?usp=sharing">📘 Environmental Science and Susability</a></li>
+          <li><a href="https://drive.google.com/file/d/1eA9Y9F6HbWyBEBUhzo8PxtUCFUw5kqTC/view?usp=sharing">📘 Introduction to Operating System</a></li>
+          <li><a href="https://drive.google.com/file/d/1pCsQfahKeSBQhH9pUP48MkATD0MnwKru/view?usp=sharing">📘 Environmental Science and Sustainability</a></li>
           <li><a href="https://drive.google.com/file/d/1A9nqoi3VucHVuFL0hAnBinUlaqvepgHU/view?usp=sharing">📘 web Essentials</a></li>
         </ul>
         <h4>AU Question Papers</h4>
@@ -340,7 +410,7 @@
 
     <!-- 🔽 Third Year-->
     <div id="third" class="semester-section">
-      <div class="semester-title">Third Year - Odd Semester</div>
+      <div class="semester-title">Third Year - ODD Semester</div>
       <div class="material-list">
         <h4>Materials</h4>
         <ul>
@@ -372,7 +442,7 @@
         </ul>
       </div>
 
-      <div class="semester-title">Third Year - Even Semester</div>
+      <div class="semester-title">Third Year - EVEN Semester</div>
       <div class="material-list">
         <h4>Materials</h4>
         <ul>
@@ -423,6 +493,64 @@
         </ul>
       </div>
     </div>
+    </div>
+
+
+    <!-- 🟢 R25 -->
+<div class="regulation r25">
+
+  <div id="second" class="semester-section">
+    <!-- 🔽 R25 Second Year Notes (add when ready) -->
+    <div class="semester-title">Second Year - ODD Semester</div>
+      <div class="material-list">
+        <h4>Materials</h4>
+        <p>🚧 Content will be updated soon</p>
+
+  </div>
+
+    <div class="semester-title">Second Year - EVEN Semester</div>
+      <div class="material-list">
+        <h4>Materials</h4>
+        <p>🚧 Content will be updated soon</p>
+
+  </div>
+</div>
+
+  <div id="third" class="semester-section">
+    <!-- 🔽 R25 Third Year Notes (add when ready) -->
+    <div class="semester-title">Third Year - ODD Semester</div>
+      <div class="material-list">
+        <h4>Materials</h4>
+        <p>🚧 Content will be updated soon</p>
+
+  </div>
+
+    <div class="semester-title">Third Year - EVEN Semester</div>
+      <div class="material-list">
+        <h4>Materials</h4>
+        <p>🚧 Content will be updated soon</p>
+
+  </div>
+</div>
+
+<div id="final" class="semester-section">
+    <!-- 🔽 R25 Second Year Notes (add when ready) -->
+    <div class="semester-title">Final Year - ODD Semester</div>
+      <div class="material-list">
+        <h4>Materials</h4>
+        <p>🚧 Content will be updated soon</p>
+
+  </div>
+
+    <div class="semester-title">Final Year - EVEN Semester</div>
+      <div class="material-list">
+        <h4>Materials</h4>
+        <p>🚧 Content will be updated soon</p>
+
+  </div>
+</div>
+
+  
   </main>
 
   <!-- Footer -->
@@ -440,11 +568,53 @@
       document.getElementById("navbar").classList.toggle("active");
     }
 
-    function showSemester(id) {
-      const sections = document.querySelectorAll('.semester-section');
-      sections.forEach(section => section.classList.remove('active'));
-      document.getElementById(id).classList.add('active');
-    }
+
+
+function loadNotes() {
+  const regulation = document.getElementById("regulation").value;
+  const year = document.getElementById("year").value;
+  const warning = document.getElementById("warning-msg");
+
+  // Reset warning
+  warning.style.display = "none";
+  warning.innerText = "";
+
+  if (!regulation && !year) {
+    warning.innerText = "⚠️ Please select Regulation and Year";
+    warning.style.display = "block";
+    return;
+  }
+
+  if (!regulation) {
+    warning.innerText = "⚠️ Please select Regulation";
+    warning.style.display = "block";
+    return;
+  }
+
+  if (!year) {
+    warning.innerText = "⚠️ Please select Year";
+    warning.style.display = "block";
+    return;
+  }
+
+  // Hide all regulations
+  document.querySelectorAll(".regulation").forEach(r => {
+    r.style.display = "none";
+  });
+
+  // Hide all year sections
+  document.querySelectorAll(".semester-section").forEach(s => {
+    s.classList.remove("active");
+  });
+
+  // Show selected regulation
+  const selectedReg = document.querySelector(`.${regulation}`);
+  selectedReg.style.display = "block";
+
+  // Show selected year
+  selectedReg.querySelector(`#${year}`).classList.add("active");
+}
+
 
     window.addEventListener("load", () => {
       const loader = document.getElementById("loading-screen");
