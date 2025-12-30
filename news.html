@@ -227,7 +227,7 @@
       .info-card img {
         width: 100%;
         max-width: 300px;
-        height: auto;
+        height: 200px;
         margin: 0;
       }
 
@@ -235,6 +235,133 @@
         padding: 15px;
       }
     }
+
+    /* CATEGORY BOXES */
+.category-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 35px;
+  padding: 40px;
+}
+
+.category-box {
+  height: 150px;
+  background: linear-gradient(120deg, #03133eb2, #052350, #326181);
+  background-size: 300% 300%;
+  border-radius: 20px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+
+  position: relative;
+  overflow: hidden;
+
+  box-shadow: 0 10px 25px rgba(24, 24, 17, 0.629);
+  animation: gradientMove 6s ease infinite;
+}
+
+/* Animated background gradient */
+@keyframes gradientMove {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+/* 🌊 CONTINUOUS SPLASH EFFECT */
+.category-box::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -130%;
+  width: 130%;
+  height: 100%;
+  background: linear-gradient(
+    120deg,
+    transparent,
+    rgba(255,255,255,0.45),
+    transparent
+  );
+  animation: splashWave 3.2s ease-in-out infinite;
+}
+
+/* Splash animation */
+@keyframes splashWave {
+  0% {
+    left: -130%;
+    opacity: 0;
+  }
+  20% {
+    opacity: 1;
+  }
+  50% {
+    left: 130%;
+    opacity: 1;
+  }
+  100% {
+    left: 130%;
+    opacity: 0;
+  }
+}
+
+/* Delay second box splash */
+.category-box:nth-child(2)::before {
+  animation-delay: 1.6s;
+}
+
+/* Text */
+.category-box span {
+  color: white;
+  font-size: 18px;
+  font-weight: bold;
+  letter-spacing: 0.6px;
+  z-index: 1;
+}
+
+/* SECTIONS */
+.highlight-section {
+  display: none;
+  background: #fff;
+  padding: 30px 20px;
+  margin: 20px;
+  border-left: 5px solid #005bb5;
+  border-radius: 5px;
+  animation: fadeIn 0.6s ease;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.highlight-section h2 {
+  color: #0e2e53;
+  text-align: center;
+  margin-bottom: 25px;
+}
+
+/* FOOTER */
+footer {
+  background: #002b5c;
+  color: white;
+  text-align: center;
+  padding: 10px;
+}
+
+.category-box {
+  position: relative;
+  overflow: hidden;
+  transition: transform 0.35s ease, box-shadow 0.35s ease;
+}
+
+/* ONLY ENLARGE ON HOVER */
+.category-box:hover {
+  transform: scale(1.08);
+  box-shadow: 0 18px 40px rgba(4, 4, 4, 0.25);
+}
+
+
   </style>
 </head>
 <body>
@@ -269,10 +396,20 @@
 
   <!-- 🔷 Main Content -->
   <main>
-    <!-- 🔹 Placement Details Section -->
-    <section class="highlight-section">
-      <h2>🏢 Placement Details</h2>
-      <div class="card-grid">
+
+    <!-- CATEGORY BOXES -->
+<div class="category-container">
+  <div class="category-box" onclick="showSection('placements')">
+    <span>🏢 Placement Details</span>
+  </div>
+  <div class="category-box" onclick="showSection('achievements')">
+    <span>🏆 Achievements</span>
+  </div>
+</div>
+
+<section id="placements" class="highlight-section">
+  <h2>🏢 Placement Details</h2>
+  <div class="card-grid">
         <div class="info-card">
           <img src="Vignesh.png" alt="Placement Drive">
           <div class="card-text">
@@ -282,23 +419,17 @@
         </div>
 
         <div class="info-card">
-          <img src="harsini.png" alt="Internship">
+          <img src="harsini.png" alt="Internship"class="placement-img">
           <div class="card-text">
             <h3>Harsihni K</h3>
             <p>Placed in <b>Intellipat</b> with the package of ₹9 Lakhs per Annum.</p>
           </div>
         </div>
-       
-        
-      </div>
+</section>
 
-      
-    </section>
-
-    <!-- 🔹 Achievements Section -->
-    <section class="highlight-section">
-      <h2>🏆 Our Achievements</h2>
-      <div class="card-grid">
+<section id="achievements" class="highlight-section">
+  <h2>🏆 Our Achievements</h2>
+  <div class="card-grid">
         <div class="info-card">
           <img src="n1.jpg" alt="Hackathon Winner">
           <div class="card-text">
@@ -321,7 +452,11 @@
             <h3>THIRD YEAR STUDENTS WON FIRST PRIZE - Non Technical Event</h3>
             <p>It's Happy to share that <b>ARUNKUMAR M, DHINESH R, CHANDHRU MD, MAADHESH V </b> of Third year IT students won  First prize in E-SPORTS held on St.Anne's College of Engineering and Technology at Pandruti.</p>
           </div>
+        </div>
       </div>
+</section>
+
+      
     </section>
   </main>
 
@@ -337,6 +472,14 @@
 
   <!-- 🔷 Toggle Script -->
   <script>
+
+    function showSection(id) {
+  document.querySelectorAll('.highlight-section').forEach(sec => {
+    sec.style.display = 'none';
+  });
+  document.getElementById(id).style.display = 'block';
+  document.getElementById(id).scrollIntoView({ behavior: 'smooth' });
+}
     function toggleMenu() {
       document.getElementById("navbar").classList.toggle("active");
     }
@@ -364,5 +507,3 @@
 
 </body>
 </html>
-
-
