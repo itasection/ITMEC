@@ -5,21 +5,45 @@
   <title>Faculty - Mailam Engineering College</title>
   <!-- ✅ Favicon -->
   <link rel="icon" href="p.png" type="image/png" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5, user-scalable=yes" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
   <style>
-     html, body {
+    :root {
+      --bg-deep: #0a0e17;
+      --bg-card: #111827;
+      --bg-elevated: #1a2234;
+      --border: rgba(99, 102, 241, 0.2);
+      --accent: #6366f1;
+      --accent-glow: rgba(99, 102, 241, 0.4);
+      --accent-cyan: #22d3ee;
+      --accent-amber: #fbbf24;
+      --text: #e5e7eb;
+      --text-muted: #9ca3af;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html, body {
       margin: 0;
       padding: 0;
       max-width: 100%;
       overflow-x: hidden;
-      font-family: Arial, sans-serif;
-      background: #f5f4f4;
+      font-family: 'Outfit', system-ui, sans-serif;
+      background: var(--bg-deep);
+      color: var(--text);
+      min-height: 100vh;
     }
+
     body {
-      font-family: Arial, sans-serif;
-      background: #f5f4f4;
-      margin: 0;
-      padding: 0;
+      background: 
+        radial-gradient(ellipse 120% 80% at 50% -20%, rgba(99, 102, 241, 0.15), transparent 50%),
+        radial-gradient(ellipse 80% 60% at 100% 50%, rgba(34, 211, 238, 0.08), transparent 40%),
+        radial-gradient(ellipse 80% 60% at 0% 80%, rgba(251, 191, 36, 0.06), transparent 40%),
+        var(--bg-deep);
     }
 
     .header {
@@ -28,28 +52,49 @@
       flex-direction: column;
       align-items: center;
       justify-content: center;
-      background-color: #02244b;
+      background: linear-gradient(180deg, rgba(17, 24, 39, 0.95) 0%, rgba(10, 14, 23, 0.9) 100%);
+      border-bottom: 1px solid var(--border);
       color: white;
-      padding: 70px 10px;
+      padding: 50px 20px 40px;
       text-align: center;
+      overflow: visible;
+    }
+
+    .header::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(circle at 50% 0%, rgba(99, 102, 241, 0.12), transparent 60%);
+      pointer-events: none;
     }
 
     .logo {
       width: 150%;
-      max-width: 800px;
+      max-width: 620px;
       height: auto;
       margin-bottom: 15px;
+    }}
+
+    @media (max-width: 768px) {
+      .logo {
+        max-width: 90%;
+        margin-bottom: 16px;
+      }
     }
 
     .college-name h2 {
-      font-size: clamp(15px, 4vw, 18px);
-      background: linear-gradient(135deg, #f2ea04, #ffffff, #5cc010);
-      background-size: 400% auto;
+      font-size: clamp(14px, 3.5vw, 17px);
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      background: linear-gradient(135deg,#ced41d, #fbbf24,#e14090,#ced41d, #fff,#fbbf24, #22d3ee,#fbbf24, #a9b31f,#ced41d);
+      background-size: 200% auto;
       color: transparent;
       background-clip: text;
       -webkit-background-clip: text;
-      animation: sparkle 2s linear infinite, glow 2.5s ease-in-out infinite;
+      animation: sparkle 3s linear infinite, glow 2.5s ease-in-out infinite;
       margin: 0;
+      position: relative;
+      z-index: 1;
     }
 
     @keyframes sparkle {
@@ -58,60 +103,159 @@
     }
 
     @keyframes glow {
-      0%, 100% {
-        text-shadow: 0 0 5px #aeb237, 0 0 10px #e2d419, 0 0 15px #9c0909;
-      }
-      50% {
-        text-shadow: 0 0 15px #eee717, 0 0 25px #ffee00, 0 0 30px #b91313;
-      }
+      0%, 100% { filter: drop-shadow(0 0 8px rgba(251, 191, 36, 0.5)); }
+      50% { filter: drop-shadow(0 0 16px rgba(34, 211, 238, 0.6)); }
     }
 
     .menu-toggle {
       position: absolute;
-      top: 215px;
-      left: 10px;
-      background: none;
+      left: 20px;
+      top: 185px;
+      z-index: 1001;
+      background: transparent;
       border: none;
       color: white;
-      font-size: 28px;
+      font-size: 24px;
       cursor: pointer;
+      padding: 0;
+      margin: 0;
+      border-radius: 0;
+      width: auto;
+      height: auto;
+      line-height: 1;
+      transition: transform 0.2s, opacity 0.3s, visibility 0.3s;
+      display: none;
+      appearance: none;
+      -webkit-appearance: none;
+      font-weight: normal;
+      opacity: 1;
+      visibility: visible;
     }
 
-    @media (min-width: 769px) {
-      .menu-toggle {
-        display: none !important;
-      }
+    .menu-toggle:hover {
+      transform: scale(1.1);
+    }
+
+    .menu-toggle:active {
+      transform: scale(0.95);
     }
 
     .navbar {
-      background-color: #004080;
-      text-align: center;
-      padding: 5px 0;
       display: flex;
       flex-wrap: wrap;
       justify-content: center;
+      align-items: center;
+      gap: 4px;
+      padding: 12px 20px;
+      position: sticky;
+      top: 0;
+      z-index: 999;
+      background: rgba(17, 24, 39, 0.85);
+      backdrop-filter: blur(16px);
+      border-bottom: 1px solid var(--border);
+      box-shadow: 0 4px 24px rgba(0, 0, 0, 0.3);
     }
 
     .navbar a {
-      color: white;
-      margin: 0 15px;
+      position: relative;
+      padding: 10px 16px;
+      color: var(--text-muted);
       text-decoration: none;
-      font-weight: bold;
-      padding: 10px;
+      font-weight: 500;
+      font-size: 0.9rem;
+      border-radius: 10px;
+      transition: color 0.2s, transform 0.2s, box-shadow 0.2s;
+      overflow: hidden;
     }
+
+    .navbar a::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(135deg, rgba(99, 102, 241, 0.15), rgba(34, 211, 238, 0.1));
+      opacity: 0;
+      border-radius: inherit;
+      transition: opacity 0.25s;
+    }
+
+    .navbar a::after {
+      content: '';
+      position: absolute;
+      left: 50%;
+      bottom: 6px;
+      width: 0;
+      height: 2px;
+      background: linear-gradient(90deg, var(--accent), var(--accent-cyan));
+      border-radius: 2px;
+      transform: translateX(-50%);
+      transition: width 0.3s ease;
+      box-shadow: 0 0 12px var(--accent-glow);
+    }
+
+    .navbar a:hover,
+    .navbar a:focus-visible {
+      color: #fff;
+      transform: translateY(-2px);
+    }
+
+    .navbar a:hover::before,
+    .navbar a:focus-visible::before { opacity: 1; }
+    .navbar a:hover::after,
+    .navbar a:focus-visible::after { width: 70%; }
 
     @media (max-width: 768px) {
       .navbar {
         display: none;
         flex-direction: column;
+        position: fixed;
+        left: 0;
+        top: 0;
+        height: 100vh;
+        width: 75%;
+        max-width: 280px;
+        background: rgba(10, 14, 23, 0.98);
+        backdrop-filter: blur(16px);
+        padding: 80px 16px 16px;
+        z-index: 1000;
+        box-shadow: 4px 0 24px rgba(0, 0, 0, 0.5);
+        border-right: 1px solid var(--border);
+        gap: 0;
+        overflow-y: auto;
+        animation: slideInLeft 0.3s ease-out;
       }
       .navbar.active {
         display: flex;
       }
       .navbar a {
-        padding: 12px;
-        border-top: 1px solid #0066cc;
+        width: 100%;
+        text-align: left;
+        border: 1px solid var(--border);
+        margin: 6px 0;
+        padding: 12px 14px;
+        margin-left: 0;
+        font-size: 0.95rem;
       }
+      
+      .menu-toggle {
+        display: block !important;
+      }
+      
+      .header {
+        padding: 40px 20px 35px;
+      }
+      
+      @keyframes slideInLeft {
+        from {
+          transform: translateX(-100%);
+        }
+        to {
+          transform: translateX(0);
+        }
+      }
+    }
+
+    @media (min-width: 769px) {
+      .menu-toggle { display: none !important; }
     }
 
     #loading-screen {
@@ -120,33 +264,36 @@
       left: 0;
       width: 100%;
       height: 100%;
-      background-color: rgba(255, 255, 255, 0.9);
-      display: flex;
+      background: rgba(10, 14, 23, 0.95);
+      display: none;
+      flex-direction: column;
       justify-content: center;
       align-items: center;
       z-index: 9999;
+      backdrop-filter: blur(8px);
+    }
+
+    #loading-screen.active {
+      display: flex;
     }
 
     .loader {
-      width: 60px;
-      height: 60px;
-      border: 6px solid #cbdc43;
-      border-top: 6px solid transparent;
+      width: 40px;
+      height: 40px;
+      border: 3px solid var(--border);
+      border-top-color: var(--accent);
       border-radius: 50%;
-      animation: spin 1s linear infinite, flash 0.5s infinite alternate;
+      animation: spin 0.8s linear infinite;
     }
 
     @keyframes spin {
       to { transform: rotate(360deg); }
     }
 
-    @keyframes flash {
-      from { box-shadow: 0 0 10px #f4f586, 0 0 20px #e6eb99; }
-      to { box-shadow: 0 0 20px #e2f082, 0 0 40px #c0e03d; }
-    }
-
     main {
       padding: 40px 20px;
+      max-width: 1400px;
+      margin: auto;
     }
 
     .faculty-container {
@@ -156,18 +303,47 @@
       gap: 40px;
     }
 
+    .section-title {
+      font-size: 2rem;
+      font-weight: 700;
+      background: linear-gradient(135deg, var(--accent-cyan), var(--accent), var(--accent-cyan));
+      background-size: 200% auto;
+      -webkit-background-clip: text;
+      background-clip: text;
+      -webkit-text-fill-color: transparent;
+      margin: 30px 0;
+      text-align: center;
+      animation: titleGlow 3s ease-in-out infinite;
+    }
+
+    @keyframes titleGlow {
+      0%, 100% {
+        filter: drop-shadow(0 0 8px rgba(99, 102, 241, 0.4));
+      }
+      50% {
+        filter: drop-shadow(0 0 16px rgba(34, 211, 238, 0.6));
+      }
+    }
+
     .faculty-card {
-      background-color: white;
-      border-radius: 12px;
-      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-      padding: 20px;
+      background: linear-gradient(180deg, rgba(26, 34, 52, 0.9), rgba(17, 24, 39, 0.95));
+      border: 1px solid var(--border);
+      border-radius: 15px;
+      padding: 25px;
       width: 90%;
       max-width: 900px;
       display: flex;
-      gap: 20px;
+      gap: 25px;
       align-items: flex-start;
       flex-wrap: wrap;
       position: relative;
+      transition: transform 0.3s, box-shadow 0.3s;
+      box-shadow: 0 12px 32px rgba(0, 0, 0, 0.3);
+    }
+
+    .faculty-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 16px 40px rgba(99, 102, 241, 0.2);
     }
 
     .faculty-card.reverse {
@@ -175,29 +351,18 @@
     }
 
     .faculty-photo {
-      width: 200px;
-      height: 200px;
-      border-radius: 15px;
+      width: 180px;
+      height: 180px;
+      border-radius: 12px;
       object-fit: cover;
-      padding: 4px;
-      background: linear-gradient(45deg, #181818, #70676a, #3d3d39, #e1dfd8);
-      background-size: 400% 400%;
-      animation: glitter 3.5s linear infinite;
+      border: 2px solid var(--accent-cyan);
+      box-shadow: 0 0 20px rgba(34, 211, 238, 0.3);
+      transition: transform 0.3s, box-shadow 0.3s;
     }
 
-    @keyframes glitter {
-      0% {
-        background-position: 0% 50%;
-        box-shadow: 0 0 10px #e1dcaf, 0 0 20px #160d14;
-      }
-      50% {
-        background-position: 100% 50%;
-        box-shadow: 0 0 20px #150b13, 0 0 30px #201f12;
-      }
-      100% {
-        background-position: 0% 50%;
-        box-shadow: 0 0 10px #b8cdb8, 0 0 20px #b3b058;
-      }
+    .faculty-card:hover .faculty-photo {
+      transform: scale(1.05);
+      box-shadow: 0 0 30px rgba(34, 211, 238, 0.5);
     }
 
     .faculty-slide {
@@ -206,42 +371,87 @@
     }
 
     .faculty-name {
-      font-size: 20px;
-      font-weight: bold;
-      color: #002b5c;
-      margin-bottom: 5px;
+      font-size: 1.3rem;
+      font-weight: 700;
+      background: linear-gradient(135deg, var(--accent-cyan), var(--accent));
+      -webkit-background-clip: text;
+      background-clip: text;
+      -webkit-text-fill-color: transparent;
+      margin: 0 0 8px 0;
     }
 
     .faculty-position {
-      font-size: 15px;
-      font-weight: 500;
-      color: #2d364c;
-      margin-bottom: 10px;
+      font-size: 0.95rem;
+      font-weight: 600;
+      color: var(--accent-amber);
+      margin-bottom: 12px;
     }
 
     .faculty-bio {
-      font-size: 14px;
-      color: #080807;
-      line-height: 1.6;
+      font-size: 0.9rem;
+      color: var(--text-muted);
+      line-height: 1.7;
       text-align: justify;
     }
 
     footer {
-      background-color: #002b5c;
-      color: white;
+      background: rgba(17, 24, 39, 0.95);
+      border-top: 1px solid var(--border);
       text-align: center;
-      padding: 10px;
+      padding: 20px;
+      font-size: 0.9rem;
     }
 
     .developer-credit {
       text-align: center;
-      font-size: 14px;
-      color: #444;
-      margin: 10px 0 30px;
+      font-size: 13px;
+      color: var(--text-muted);
+      margin: 12px 0 28px;
+      opacity: 0.9;
     }
 
-    .h2 {
-      color: #7d1e7e;
+    .dev-group {
+      margin: 0.25rem 0 0;
+      font-family: 'Pacifico', 'Righteous', cursive;
+      font-size: 1.25rem;
+      letter-spacing: 0.06em;
+      background: linear-gradient(90deg, #22c55e, #f97316, #a855f7);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+      text-shadow: 0 8px 30px rgba(15, 23, 42, 0.95);
+    }
+
+    @media (max-width: 768px) {
+      main {
+        padding: 20px 16px;
+      }
+
+      .faculty-card {
+        gap: 15px;
+        padding: 20px;
+      }
+
+      .faculty-photo {
+        width: 150px;
+        height: 150px;
+      }
+
+      .faculty-name {
+        font-size: 1.1rem;
+      }
+
+      .faculty-position {
+        font-size: 0.85rem;
+      }
+
+      .faculty-bio {
+        font-size: 0.85rem;
+      }
+
+      .section-title {
+        font-size: 1.5rem;
+      }
     }
   </style>
 </head>
@@ -273,10 +483,9 @@
   </nav>
 
   <main>
-    <div class="h2">
-      <center><h2><u>Our Faculty Members</u></h2></center>
-    </div>
-    <section class="faculty-container">
+    <h1 class="section-title">👨‍🏫 Our Faculty Members</h1>
+    
+    <div class="faculty-container">
       
       <!-- Faculty 1 -->
       <div class="faculty-card">
@@ -291,9 +500,8 @@
       </div>
 
       <!-- Faculty 2 -->
-      <div class="faculty-card reverse" onclick="toggleDetails(this)">
+      <div class="faculty-card reverse">
         <img src="gaji sir.jpg" class="faculty-photo" alt="Gajendiran  sir Pic">
-        <div class="click-hint"></div>
         <div class="faculty-slide">
           <div class="faculty-details">
             <div class="faculty-name">Mr. R Gajendiran <span style="color:#878282; font-size:small;">M. E., </span> </div>
@@ -307,9 +515,8 @@
 
 
        <!-- Faculty 3 -->
-      <div class="faculty-card" onclick="toggleDetails(this)">
+      <div class="faculty-card">
         <img src="logisir.jpg" class="faculty-photo" alt="Loganathan sir Photo">
-        <div class="click-hint"></div>
         <div class="faculty-slide">
           <div class="faculty-details">
             <div class="faculty-name">Mr. K Loganathan <span style="color:#878282; font-size:small;">M. E.</span> </div>
@@ -321,9 +528,8 @@
 
 
        <!-- Faculty 4 -->
-      <div class="faculty-card reverse" onclick="toggleDetails(this)">
+      <div class="faculty-card reverse">
         <img src="ramyamam.jpg" class="faculty-photo" alt="Ramya mam pic">
-        <div class="click-hint"></div>
         <div class="faculty-slide">
           <div class="faculty-details">
             <div class="faculty-name">Mrs. C Ramya <span style="color:#878282; font-size:small;">M. Tech., </span></div>
@@ -335,9 +541,8 @@
 
 
        <!-- Faculty 5 -->
-      <div class="faculty-card" onclick="toggleDetails(this)">
+      <div class="faculty-card">
         <img src="aswinimam.jpg" class="faculty-photo" alt="Aswini mam pic">
-        <div class="click-hint"></div>
         <div class="faculty-slide">
           <div class="faculty-details">
             <div class="faculty-name">Ms. R Aswini <span style="color:#878282; font-size:small;">M. E.</span></div>
@@ -348,9 +553,8 @@
       </div>
 
        <!-- Faculty 6 -->
-      <div class="faculty-card reverse" onclick="toggleDetails(this)">
+      <div class="faculty-card reverse">
         <img src="sathyamam.jpg" class="faculty-photo" alt="Sathya mam Pic">
-        <div class="click-hint"></div>
         <div class="faculty-slide">
           <div class="faculty-details">
             <div class="faculty-name">Mrs. S Sathiya <span style="color:#878282; font-size:small;">M.Tech.,</span> </div>
@@ -362,9 +566,8 @@
 
 
        <!-- Faculty 7 -->
-      <div class="faculty-card" onclick="toggleDetails(this)">
+      <div class="faculty-card">
         <img src="archumam.jpg" class="faculty-photo" alt="Archana Devi mam pic">
-        <div class="click-hint"></div>
         <div class="faculty-slide">
           <div class="faculty-details">
             <div class="faculty-name">Ms. P Archana Devi <span style="color:#878282; font-size:small;">M.Tech</span></div>
@@ -376,9 +579,8 @@
 
 
        <!-- Faculty 8 -->
-      <div class="faculty-card reverse" onclick="toggleDetails(this)">
+      <div class="faculty-card reverse">
         <img src="karthiksir.jpg" class="faculty-photo" alt="Karthikeyan sir pic">
-        <div class="click-hint"></div>
         <div class="faculty-slide">
           <div class="faculty-details">
             <div class="faculty-name">Mr. A Karthikeyan <span style="color:#878282; font-size:small;">M. E., </span></div>
@@ -389,9 +591,8 @@
       </div>
 
  <!-- Faculty 9 -->
-      <div class="faculty-card" onclick="toggleDetails(this)">
+      <div class="faculty-card">
         <img src="rameshsir.jpg" class="faculty-photo" alt="Ramesh sir Photo">
-        <div class="click-hint"></div>
         <div class="faculty-slide">
           <div class="faculty-details">
             <div class="faculty-name">Mr. S Ramesh <span style="color:#878282; font-size:small;">M.Tech., </span></div>
@@ -402,9 +603,8 @@
       </div>
 
        <!-- Faculty 10 -->
-      <div class="faculty-card reverse" onclick="toggleDetails(this)">
+      <div class="faculty-card reverse">
         <img src="lavmam.jpg" class="faculty-photo" alt="Lavanya Mam pic">
-        <div class="click-hint"></div>
         <div class="faculty-slide">
           <div class="faculty-details">
             <div class="faculty-name">Mrs. M Lavanya <span style="color:#878282; font-size:small;">M. Tech</span></div>
@@ -415,9 +615,8 @@
       </div>
 
        <!-- Faculty 11 -->
-      <div class="faculty-card" onclick="toggleDetails(this)">
+      <div class="faculty-card">
         <img src="vijimam.jpg" class="faculty-photo" alt="Vijayalakshmi mam Pic">
-        <div class="click-hint"></div>
         <div class="faculty-slide">
           <div class="faculty-details">
             <div class="faculty-name">Mrs. M Vijayalakshmi <span style="color:#878282; font-size:small;">MCA., M. Phill.</span></div>
@@ -428,9 +627,8 @@
       </div>
 
       <!-- Faculty 12 -->
-      <div class="faculty-card reverse" onclick="toggleDetails(this)">
+      <div class="faculty-card reverse">
         <img src="sharmi mam.jpg" class="faculty-photo" alt=" Sharmila Mam pic">
-        <div class="click-hint"></div>
         <div class="faculty-slide">
           <div class="faculty-details">
             <div class="faculty-name">Mrs. P Sharmila <span style="color:#878282; font-size:small;">M. Tech</span></div>
@@ -448,21 +646,61 @@
       <!-- You can paste the rest of the faculty blocks here without onclick or reverse class -->
       <!-- All your faculty-card blocks stay the same here -->
       <!-- ... (everything from Faculty 1 to Faculty 12) ... -->
-    </section>
+    </div>
   </main>
 
-  <footer>
-    <p>© 2025 Mailam Engineering College. All Rights Reserved.</p>
-  </footer>
+  
 
   <div class="developer-credit">
-    <strong>DEVELOPED BY "A" BOTTERS</strong>
+    <p>© 2025 Developed with ❤️ by</p>
+    <p class="dev-group">weBnovA</p>
   </div>
+  <br>
 
   <script>
     function toggleMenu() {
-      document.getElementById("navbar").classList.toggle("active");
+      const navbar = document.getElementById("navbar");
+      const menuButton = document.querySelector(".menu-toggle");
+      
+      navbar.classList.toggle("active");
+      
+      // Hide button when menu opens, show when menu closes
+      if (navbar.classList.contains("active")) {
+        menuButton.style.visibility = "hidden";
+        menuButton.style.opacity = "0";
+      } else {
+        menuButton.style.visibility = "visible";
+        menuButton.style.opacity = "1";
+      }
     }
+    
+    // Close menu and show button when clicking a navbar link
+    document.querySelectorAll(".navbar a").forEach(link => {
+      link.addEventListener("click", function() {
+        const navbar = document.getElementById("navbar");
+        const menuButton = document.querySelector(".menu-toggle");
+        
+        navbar.classList.remove("active");
+        menuButton.style.visibility = "visible";
+        menuButton.style.opacity = "1";
+      });
+    });
+
+    // Close menu when clicking outside of it
+    document.addEventListener("click", function(event) {
+      const navbar = document.getElementById("navbar");
+      const menuButton = document.querySelector(".menu-toggle");
+      
+      // Check if the click is outside navbar and menu button
+      const isClickInsideNavbar = navbar.contains(event.target);
+      const isClickOnMenuButton = menuButton.contains(event.target);
+      
+      if (!isClickInsideNavbar && !isClickOnMenuButton && navbar.classList.contains("active")) {
+        navbar.classList.remove("active");
+        menuButton.style.visibility = "visible";
+        menuButton.style.opacity = "1";
+      }
+    });
 
     window.addEventListener("load", () => {
       const loader = document.getElementById("loading-screen");
@@ -486,4 +724,3 @@
   </script>
 </body>
 </html>
-
