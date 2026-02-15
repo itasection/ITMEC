@@ -5,22 +5,45 @@
   <title>Contact Us - Mailam Engineering College</title>
   <!-- ✅ Favicon -->
   <link rel="icon" href="p.png" type="image/png" />
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5, user-scalable=yes">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
   <style>
+    :root {
+      --bg-deep: #0a0e17;
+      --bg-card: #111827;
+      --bg-elevated: #1a2234;
+      --border: rgba(99, 102, 241, 0.2);
+      --accent: #6366f1;
+      --accent-glow: rgba(99, 102, 241, 0.4);
+      --accent-cyan: #22d3ee;
+      --accent-amber: #fbbf24;
+      --text: #e5e7eb;
+      --text-muted: #9ca3af;
+    }
 
-     html, body {
+    * {
+      box-sizing: border-box;
+    }
+
+    html, body {
       margin: 0;
       padding: 0;
       max-width: 100%;
       overflow-x: hidden;
-      font-family: Arial, sans-serif;
-      background: #f5f4f4;
+      font-family: 'Outfit', system-ui, sans-serif;
+      background: var(--bg-deep);
+      color: var(--text);
+      min-height: 100vh;
     }
+
     body {
-      font-family: Arial, sans-serif;
-      background: #f5f4f4;
-      margin: 0;
-      padding: 0;
+      background: 
+        radial-gradient(ellipse 120% 80% at 50% -20%, rgba(99, 102, 241, 0.15), transparent 50%),
+        radial-gradient(ellipse 80% 60% at 100% 50%, rgba(34, 211, 238, 0.08), transparent 40%),
+        radial-gradient(ellipse 80% 60% at 0% 80%, rgba(251, 191, 36, 0.06), transparent 40%),
+        var(--bg-deep);
     }
 
     .header {
@@ -29,28 +52,49 @@
       flex-direction: column;
       align-items: center;
       justify-content: center;
-      background-color: #02244b;
+      background: linear-gradient(180deg, rgba(17, 24, 39, 0.95) 0%, rgba(10, 14, 23, 0.9) 100%);
+      border-bottom: 1px solid var(--border);
       color: white;
-      padding: 70px 10px;
+      padding: 50px 20px 40px;
       text-align: center;
+      overflow: visible;
     }
 
-      .logo {
+    .header::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(circle at 50% 0%, rgba(99, 102, 241, 0.12), transparent 60%);
+      pointer-events: none;
+    }
+
+    .logo {
       width: 150%;
-      max-width: 800px;
+      max-width: 620px;
       height: auto;
       margin-bottom: 15px;
+    }}
+
+    @media (max-width: 768px) {
+      .logo {
+        max-width: 90%;
+        margin-bottom: 16px;
+      }
     }
 
     .college-name h2 {
-      font-size: clamp(15px, 4vw, 18px);
-      background: linear-gradient(135deg, #f2ea04, #ffffff, #5cc010);
-      background-size: 400% auto;
+      font-size: clamp(14px, 3.5vw, 17px);
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      background: linear-gradient(135deg,#ced41d, #fbbf24,#e14090,#ced41d, #fff,#fbbf24, #22d3ee,#fbbf24, #a9b31f,#ced41d);
+      background-size: 200% auto;
       color: transparent;
       background-clip: text;
       -webkit-background-clip: text;
-      animation: sparkle 2s linear infinite, glow 2.5s ease-in-out infinite;
+      animation: sparkle 3s linear infinite, glow 2.5s ease-in-out infinite;
       margin: 0;
+      position: relative;
+      z-index: 1;
     }
 
     @keyframes sparkle {
@@ -59,73 +103,159 @@
     }
 
     @keyframes glow {
-      0%, 100% {
-        text-shadow: 0 0 5px #aeb237, 0 0 10px #e2d419, 0 0 15px #9c0909;
-      }
-      50% {
-        text-shadow: 0 0 15px #eee717, 0 0 25px #ffee00, 0 0 30px #b91313;
-      }
+      0%, 100% { filter: drop-shadow(0 0 8px rgba(251, 191, 36, 0.5)); }
+      50% { filter: drop-shadow(0 0 16px rgba(34, 211, 238, 0.6)); }
     }
 
     .menu-toggle {
       position: absolute;
-      bottom: 10px;
-      left: 10px;
-      background: none;
+      left: 20px;
+      top: 185px;
+      z-index: 1001;
+      background: transparent;
       border: none;
       color: white;
-      font-size: 28px;
+      font-size: 24px;
       cursor: pointer;
-      display: none; /* hidden by default */
+      padding: 0;
+      margin: 0;
+      border-radius: 0;
+      width: auto;
+      height: auto;
+      line-height: 1;
+      transition: transform 0.2s, opacity 0.3s, visibility 0.3s;
+      display: none;
+      appearance: none;
+      -webkit-appearance: none;
+      font-weight: normal;
+      opacity: 1;
+      visibility: visible;
+    }
+
+    .menu-toggle:hover {
+      transform: scale(1.1);
+    }
+
+    .menu-toggle:active {
+      transform: scale(0.95);
     }
 
     .navbar {
-      background-color: #004080;
-      text-align: center;
-      padding: 5px 0;
       display: flex;
       flex-wrap: wrap;
       justify-content: center;
+      align-items: center;
+      gap: 4px;
+      padding: 12px 20px;
+      position: sticky;
+      top: 0;
+      z-index: 999;
+      background: rgba(17, 24, 39, 0.85);
+      backdrop-filter: blur(16px);
+      border-bottom: 1px solid var(--border);
+      box-shadow: 0 4px 24px rgba(0, 0, 0, 0.3);
     }
 
     .navbar a {
-      color: white;
-      margin: 0 15px;
+      position: relative;
+      padding: 10px 16px;
+      color: var(--text-muted);
       text-decoration: none;
-      font-weight: bold;
-      padding: 10px;
+      font-weight: 500;
+      font-size: 0.9rem;
+      border-radius: 10px;
+      transition: color 0.2s, transform 0.2s, box-shadow 0.2s;
+      overflow: hidden;
     }
 
-    /* Mobile responsiveness */
+    .navbar a::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(135deg, rgba(99, 102, 241, 0.15), rgba(34, 211, 238, 0.1));
+      opacity: 0;
+      border-radius: inherit;
+      transition: opacity 0.25s;
+    }
+
+    .navbar a::after {
+      content: '';
+      position: absolute;
+      left: 50%;
+      bottom: 6px;
+      width: 0;
+      height: 2px;
+      background: linear-gradient(90deg, var(--accent), var(--accent-cyan));
+      border-radius: 2px;
+      transform: translateX(-50%);
+      transition: width 0.3s ease;
+      box-shadow: 0 0 12px var(--accent-glow);
+    }
+
+    .navbar a:hover,
+    .navbar a:focus-visible {
+      color: #fff;
+      transform: translateY(-2px);
+    }
+
+    .navbar a:hover::before,
+    .navbar a:focus-visible::before { opacity: 1; }
+    .navbar a:hover::after,
+    .navbar a:focus-visible::after { width: 70%; }
+
     @media (max-width: 768px) {
       .navbar {
         display: none;
         flex-direction: column;
+        position: fixed;
+        left: 0;
+        top: 0;
+        height: 100vh;
+        width: 75%;
+        max-width: 280px;
+        background: rgba(10, 14, 23, 0.98);
+        backdrop-filter: blur(16px);
+        padding: 80px 16px 16px;
+        z-index: 1000;
+        box-shadow: 4px 0 24px rgba(0, 0, 0, 0.5);
+        border-right: 1px solid var(--border);
+        gap: 0;
+        overflow-y: auto;
+        animation: slideInLeft 0.3s ease-out;
       }
-
       .navbar.active {
         display: flex;
       }
-
       .navbar a {
-        padding: 12px;
-        border-top: 1px solid #0066cc;
+        width: 100%;
+        text-align: left;
+        border: 1px solid var(--border);
+        margin: 6px 0;
+        padding: 12px 14px;
+        margin-left: 0;
+        font-size: 0.95rem;
       }
-
+      
       .menu-toggle {
-        display: block;
+        display: block !important;
+      }
+      
+      .header {
+        padding: 40px 20px 35px;
+      }
+      
+      @keyframes slideInLeft {
+        from {
+          transform: translateX(-100%);
+        }
+        to {
+          transform: translateX(0);
+        }
       }
     }
 
-    /* Always show navbar on large screens */
     @media (min-width: 769px) {
-      .navbar {
-        display: flex !important;
-      }
-
-      .menu-toggle {
-        display: none;
-      }
+      .menu-toggle { display: none !important; }
     }
 
     #loading-screen {
@@ -134,72 +264,193 @@
       left: 0;
       width: 100%;
       height: 100%;
-      background-color: rgba(255, 255, 255, 0.9);
-      display: flex;
+      background: rgba(10, 14, 23, 0.95);
+      display: none;
+      flex-direction: column;
       justify-content: center;
       align-items: center;
       z-index: 9999;
+      backdrop-filter: blur(8px);
+    }
+
+    #loading-screen.active {
+      display: flex;
     }
 
     .loader {
-      width: 60px;
-      height: 60px;
-      border: 6px solid #cbdc43;
-      border-top: 6px solid transparent;
+      width: 40px;
+      height: 40px;
+      border: 3px solid var(--border);
+      border-top-color: var(--accent);
       border-radius: 50%;
-      animation: spin 1s linear infinite, flash 0.5s infinite alternate;
+      animation: spin 0.8s linear infinite;
     }
 
     @keyframes spin {
       to { transform: rotate(360deg); }
     }
 
-    @keyframes flash {
-      from { box-shadow: 0 0 10px #f4f586, 0 0 20px #e6eb99; }
-      to { box-shadow: 0 0 20px #e2f082, 0 0 40px #c0e03d; }
+    main {
+      padding: 40px 20px;
+      max-width: 1200px;
+      margin: auto;
     }
 
-    main.contact-page {
-      padding: 20px;
-      background: white;
-      margin: 20px;
-      border-left: 5px solid #002b5c;
-    }
-
-    main.contact-page h2,
-    main.contact-page p {
+    .section-title {
+      font-size: 2rem;
+      font-weight: 700;
+      background: linear-gradient(135deg, var(--accent-cyan), var(--accent), var(--accent-cyan));
+      background-size: 200% auto;
+      -webkit-background-clip: text;
+      background-clip: text;
+      -webkit-text-fill-color: transparent;
+      margin: 30px 0;
       text-align: center;
+      animation: titleGlow 3s ease-in-out infinite;
+    }
+
+    @keyframes titleGlow {
+      0%, 100% {
+        filter: drop-shadow(0 0 8px rgba(99, 102, 241, 0.4));
+      }
+      50% {
+        filter: drop-shadow(0 0 16px rgba(34, 211, 238, 0.6));
+      }
+    }
+
+    .section-description {
+      text-align: center;
+      color: var(--text-muted);
+      font-size: 1rem;
+      margin-bottom: 30px;
+      max-width: 700px;
+      margin-left: auto;
+      margin-right: auto;
     }
 
     .contact-list {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
       gap: 20px;
       margin-top: 20px;
-      
     }
 
     .contact-card {
-      background-color: #f1f1f1;
-      padding: 15px;
-      border-radius: 10px;
-      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-      text-align: center;
-      margin: 6px 0;
-      color: #222;
+      background: linear-gradient(180deg, rgba(26, 34, 52, 0.9), rgba(17, 24, 39, 0.95));
+      border: 1px solid var(--border);
+      border-radius: 15px;
+      padding: 20px;
+      box-shadow: 0 12px 32px rgba(0, 0, 0, 0.3);
+      transition: transform 0.3s, box-shadow 0.3s;
+      color: var(--text);
     }
 
-     .contact-card p {
-    text-align: left;
-    margin: 6px 0;
-    color: #222;
-  }
+    .contact-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 16px 40px rgba(99, 102, 241, 0.2);
+    }
+
+    .contact-card h3 {
+      font-size: 1.2rem;
+      margin: 0 0 12px 0;
+      background: linear-gradient(135deg, var(--accent-cyan), var(--accent));
+      -webkit-background-clip: text;
+      background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .contact-card p {
+      margin: 8px 0;
+      color: var(--text-muted);
+      font-size: 0.9rem;
+      line-height: 1.6;
+    }
+
+    .contact-card p strong {
+      color: var(--accent-amber);
+      font-weight: 600;
+    }
+
+    .map-section {
+      margin-top: 50px;
+      padding-top: 40px;
+      border-top: 1px solid var(--border);
+    }
+
+    .map-section h3 {
+      font-size: 1.5rem;
+      text-align: center;
+      background: linear-gradient(135deg, var(--accent-cyan), var(--accent));
+      -webkit-background-clip: text;
+      background-clip: text;
+      -webkit-text-fill-color: transparent;
+      margin-bottom: 20px;
+    }
+
+    .map-container {
+      position: relative;
+      width: 100%;
+      padding-bottom: 56.25%;
+      height: 0;
+      overflow: hidden;
+      border-radius: 15px;
+      box-shadow: 0 12px 32px rgba(0, 0, 0, 0.3);
+    }
+
+    .map-container iframe {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      border: 0;
+      border-radius: 15px;
+    }
 
     footer {
-      background-color: #002b5c;
-      color: white;
+      background: rgba(17, 24, 39, 0.95);
+      border-top: 1px solid var(--border);
       text-align: center;
-      padding: 10px;
+      padding: 20px;
+      font-size: 0.9rem;
+    }
+
+    .developer-credit {
+      text-align: center;
+      font-size: 13px;
+      color: var(--text-muted);
+      margin: 12px 0 28px;
+      opacity: 0.9;
+    }
+
+    .dev-group {
+      margin: 0.25rem 0 0;
+      font-family: 'Pacifico', 'Righteous', cursive;
+      font-size: 1.25rem;
+      letter-spacing: 0.06em;
+      background: linear-gradient(90deg, #22c55e, #f97316, #a855f7);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+      text-shadow: 0 8px 30px rgba(15, 23, 42, 0.95);
+    }
+
+    @media (max-width: 768px) {
+      main {
+        padding: 20px 16px;
+      }
+
+      .section-title {
+        font-size: 1.5rem;
+      }
+
+      .contact-list {
+        gap: 15px;
+      }
+
+      .contact-card {
+        padding: 16px;
+      }
     }
     
   </style>
@@ -235,64 +486,63 @@
   </nav>
 
   <!-- 🔷 Main Content -->
-  <main class="contact-page">
-    <h2>Contact Us</h2>
-    <p>Here are the contact details of our department staff:</p>
+  <main>
+    <h1 class="section-title">📞 Contact Us</h1>
+    <p class="section-description">Get in touch with our department staff for any inquiries or assistance. Here are the contact details of our faculty members and department offices.</p>
 
     <div class="contact-list">
       <div class="contact-card">
         <h3>Dr. Kalaivany S</h3>
-        <p>Professor and Head of Department.</p>
-        <p>📞 +91 94869 47802 </p>
+        <p><strong>Professor and Head of Department</strong></p>
+        <p>📞 +91 94869 47802</p>
         <p>✉️ hodit@mailamengg.com</p>
       </div>
 
       <div class="contact-card">
         <h3>Mr. Gajendiran R</h3>
-        <p>Associative Professor and HoD Incharge.</p>
+        <p><strong>Associative Professor and HoD Incharge</strong></p>
         <p>📞 +91 84895 85474</p>
         <p>✉️ gajendiranit@mailamengg.com</p>
       </div>
 
       <div class="contact-card">
         <h3>Mr. Loganathan K</h3>
-        <p>Assistant Professor.</p>
+        <p><strong>Assistant Professor</strong></p>
         <p>📞 +91 99942 25662</p>
         <p>✉️ loganathanit@mailamengg.com</p>
       </div>
 
       <div class="contact-card">
         <h3>Mrs. Ramya C</h3>
-        <p>Assistant Professor and R&D coordinator.</p>
-        <p>📞 +91 86082 04241 </p>
+        <p><strong>Assistant Professor and R&D Coordinator</strong></p>
+        <p>📞 +91 86082 04241</p>
         <p>✉️ ramyait@mailamengg.com</p>
       </div>
 
       <div class="contact-card">
         <h3>Mrs. Sathya S</h3>
-        <p>Assistant Professor and Exam Cell Coordinator.</p>
+        <p><strong>Assistant Professor and Exam Cell Coordinator</strong></p>
         <p>📞 +91 97864 76000</p>
         <p>✉️ sathyait@mailamengg.com</p>
       </div>
 
       <div class="contact-card">
         <h3>Mr. Karthikeyan A</h3>
-        <p>Assistant Professor and Deputy Boys Hostel Warden.</p>
+        <p><strong>Assistant Professor and Deputy Boys Hostel Warden</strong></p>
         <p>📞 +91 99440 56922</p>
         <p>✉️ karthikeyanit@mailamengg.com</p>
       </div>
 
-
       <div class="contact-card">
         <h3>Mr. Ramesh S</h3>
-        <p>Assistant Professor and Department Placement Cell Coordinator.</p>
+        <p><strong>Assistant Professor and Placement Cell Coordinator</strong></p>
         <p>📞 +91 99523 57548</p>
         <p>✉️ rameshit@mailamengg.com</p>
       </div>
 
       <div class="contact-card">
         <h3>Mrs. Lavanya</h3>
-        <p>Assistant Professor.</p>
+        <p><strong>Assistant Professor</strong></p>
         <p>📞 +91 97905 44286</p>
         <p>✉️ lavanyait@mailamengg.com</p>
       </div>
@@ -301,25 +551,22 @@
         <h3>Department Emails</h3>
         <p>✉️ itasection20232027@gmail.com</p>
         <p>✉️ itdepartmentdata313@gmail.com</p>
-    
       </div>
-    
 
       <div class="contact-card">
         <h3>Students Organizer</h3>
-        <p>Events Organizer</p>
+        <p><strong>Events Organizer</strong></p>
         <p>📞 +91 9876541230</p>
         <p>✉️ emailevent@gmail.com</p>
       </div>
     </div>
 
     <!-- 🔷 Embedded Google Map -->
-    <section style="margin-top: 40px;">
-      <h3 style="text-align:center;">📍 College Location on Map</h3>
-      <div style="position: relative; width: 100%; padding-bottom: 56.25%; height: 0; overflow: hidden; margin-top: 10px;">
+    <section class="map-section">
+      <h3>📍 College Location on Map</h3>
+      <div class="map-container">
         <iframe
           src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d15603.32917026997!2d79.61875194790036!3d12.123624706532565!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3a53444fe6d6f745%3A0x6f0bf0acc24680ae!2sMailam%20Engineering%20College!5e0!3m2!1sen!2sin!4v1752847724275!5m2!1sen!2sin"
-          style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: 0;"
           allowfullscreen=""
           loading="lazy"
           referrerpolicy="no-referrer-when-downgrade"
@@ -329,19 +576,58 @@
   </main>
 
   <!-- 🔷 Footer -->
-  <footer>
-    <p>&copy; 2025 Mailam Engineering College. All Rights Reserved.</p>
-  </footer>
+  
 
-  <div style="text-align:center; font-size:14px; color:#444; margin:10px 0 30px;">
-    <strong>DEVELOPED BY "A" BOTTERS</strong>
+  <div class="developer-credit">
+    <p>© 2025 Developed with ❤️ by</p>
+    <p class="dev-group">weBnovA</p>
   </div>
 
   <!-- 🔷 Scripts -->
   <script>
     function toggleMenu() {
-      document.getElementById("navbar").classList.toggle("active");
+      const navbar = document.getElementById("navbar");
+      const menuButton = document.querySelector(".menu-toggle");
+      
+      navbar.classList.toggle("active");
+      
+      // Hide button when menu opens, show when menu closes
+      if (navbar.classList.contains("active")) {
+        menuButton.style.visibility = "hidden";
+        menuButton.style.opacity = "0";
+      } else {
+        menuButton.style.visibility = "visible";
+        menuButton.style.opacity = "1";
+      }
     }
+    
+    // Close menu and show button when clicking a navbar link
+    document.querySelectorAll(".navbar a").forEach(link => {
+      link.addEventListener("click", function() {
+        const navbar = document.getElementById("navbar");
+        const menuButton = document.querySelector(".menu-toggle");
+        
+        navbar.classList.remove("active");
+        menuButton.style.visibility = "visible";
+        menuButton.style.opacity = "1";
+      });
+    });
+
+    // Close menu when clicking outside of it
+    document.addEventListener("click", function(event) {
+      const navbar = document.getElementById("navbar");
+      const menuButton = document.querySelector(".menu-toggle");
+      
+      // Check if the click is outside navbar and menu button
+      const isClickInsideNavbar = navbar.contains(event.target);
+      const isClickOnMenuButton = menuButton.contains(event.target);
+      
+      if (!isClickInsideNavbar && !isClickOnMenuButton && navbar.classList.contains("active")) {
+        navbar.classList.remove("active");
+        menuButton.style.visibility = "visible";
+        menuButton.style.opacity = "1";
+      }
+    });
 
     window.addEventListener("load", () => {
       const loader = document.getElementById("loading-screen");
@@ -353,16 +639,15 @@
 
     document.addEventListener("contextmenu", e => e.preventDefault());
 
-  document.onkeydown = function(e) {
-    if (
-      e.key === "F12" || 
-      (e.ctrlKey && e.shiftKey && (e.key === "I" || e.key === "J" || e.key === "C")) || 
-      (e.ctrlKey && e.key === "U")
-    ) {
-      return false;
-    }
-  };
+    document.onkeydown = function(e) {
+      if (
+        e.key === "F12" || 
+        (e.ctrlKey && e.shiftKey && (e.key === "I" || e.key === "J" || e.key === "C")) || 
+        (e.ctrlKey && e.key === "U")
+      ) {
+        return false;
+      }
+    };
   </script>
 </body>
 </html>
-
