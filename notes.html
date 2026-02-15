@@ -999,8 +999,32 @@
   <!-- JavaScript -->
   <script>
     function toggleMenu() {
-      document.getElementById("navbar").classList.toggle("active");
+      const navbar = document.getElementById("navbar");
+      const menuButton = document.querySelector(".menu-toggle");
+      
+      navbar.classList.toggle("active");
+      
+      // Hide button when menu opens, show when menu closes
+      if (navbar.classList.contains("active")) {
+        menuButton.style.visibility = "hidden";
+        menuButton.style.opacity = "0";
+      } else {
+        menuButton.style.visibility = "visible";
+        menuButton.style.opacity = "1";
+      }
     }
+    
+    // Close menu and show button when clicking a navbar link
+    document.querySelectorAll(".navbar a").forEach(link => {
+      link.addEventListener("click", function() {
+        const navbar = document.getElementById("navbar");
+        const menuButton = document.querySelector(".menu-toggle");
+        
+        navbar.classList.remove("active");
+        menuButton.style.visibility = "visible";
+        menuButton.style.opacity = "1";
+      });
+    });
 
 
 
