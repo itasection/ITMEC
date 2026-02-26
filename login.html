@@ -109,7 +109,7 @@
     .menu-toggle {
       position: absolute;
       left: 20px;
-      top: 185px;
+      top: 195px;
       z-index: 1001;
       background: transparent;
       border: none;
@@ -639,7 +639,7 @@
     <input type="text" id="dob" placeholder="e.g., 01-01-2005" pattern="\d{2}[-/]\d{2}[-/]\d{4}">
     <small>Use format: dd-mm-yyyy or dd/mm/yyyy</small>
 
-    <button type="button" onclick="login()">Login</button>
+    <button type="button" id="loginBtn" onclick="login()">Login</button>
 
     <div class="error" id="errorMsg"></div>
     <div class="info" id="studentInfo"></div>
@@ -771,7 +771,6 @@
             if (key !== "Marks") {
               let cellStyle = '';
               let value = student[key];
-              
               // Apply green color for GPA
               if (key.toLowerCase().includes('gpa') || key.toLowerCase().includes('cgpa')) {
                 cellStyle = 'style="color: #10b981; font-weight: 600;"';
@@ -783,7 +782,10 @@
                   cellStyle = 'style="color: #f87171; font-weight: 600;"';
                 }
               }
-              
+              // Apply orange color for U or UA
+              else if (value === 'U' || value === 'UA') {
+                cellStyle = 'style="color: orange; font-weight: 600;"';
+              }
               table += `<tr><td>${key}</td><td ${cellStyle}>${value}</td></tr>`;
             }
           }
@@ -794,7 +796,13 @@
           if (marks && typeof marks === 'object') {
             let marksTable = `<table><tr><th>Subject</th><th>Marks</th></tr>`;
             for (const subject in marks) {
-              marksTable += `<tr><td>${subject}</td><td>${marks[subject]}</td></tr>`;
+              let markValue = marks[subject];
+              let markStyle = '';
+              // Show U or UA in orange
+              if (markValue === 'U' || markValue === 'UA') {
+                markStyle = 'style="color: orange; font-weight: 600;"';
+              }
+              marksTable += `<tr><td>${subject}</td><td ${markStyle}>${markValue}</td></tr>`;
             }
             marksTable += `</table>`;
             marksBox.innerHTML = marksTable;
@@ -812,6 +820,17 @@
     }
 
     document.addEventListener("contextmenu", e => e.preventDefault());
+
+    // Allow Enter key to trigger login
+    document.addEventListener('keydown', function(e) {
+      if (e.key === 'Enter') {
+        const active = document.activeElement;
+        // Only trigger if focus is on input/select or body
+        if (active && (active.tagName === 'INPUT' || active.tagName === 'SELECT' || active === document.body)) {
+          document.getElementById('loginBtn').click();
+        }
+      }
+    });
     document.onkeydown = function(e) {
       if (
         e.key === "F12" ||
@@ -842,6 +861,3 @@
 
 </body>
 </html>
-
-
-
