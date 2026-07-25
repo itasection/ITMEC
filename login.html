@@ -987,101 +987,88 @@
 
     /* Print Styles */
     @media print {
+      @page {
+        margin: 12mm;
+      }
+
       body {
         margin: 0;
         padding: 0;
         background: #fff !important;
         color: #000 !important;
+        font-size: 11pt;
       }
 
-      .header,
-      .navbar,
-      .footer,
-      .marquee-container,
       .menu-toggle,
+      .navbar,
       .portal-tabs-bar,
-      .profile-actions,
       .modal-overlay,
       .loading-overlay,
-      .error,
-      label,
-      input,
-      select,
-      small,
+      .profile-actions,
       .btn-primary,
       .btn-secondary,
-      .user-status-bar,
-      .user-avatar-small,
-      .user-status-text,
-      .profile-header,
-      .profile-card,
-      .resource-card,
-      .resource-grid,
-      .portal-tabs-bar,
-      .glitter-marquee,
-      #loginView,
-      #profileView,
-      #certificationsView,
-      #aptitudeView,
-      #resultsView > .container > h2,
-      #resultsView > .container > label,
-      #resultsView > .container > input,
-      #resultsView > .container > select,
-      #resultsView > .container > small,
-      #resultsView > .container > .btn-primary,
-      #resultsView > .container > .btn-secondary,
-      #resultsView > .container > .error,
-      #resultsView > .container > .info {
+      .password-toggle,
+      .error,
+      .marquee-container,
+      .glitter-marquee {
         display: none !important;
       }
 
-      #resultsView,
-      #marksTable {
+      .header,
+      .main-wrapper,
+      .view-section,
+      .container,
+      .profile-card,
+      .resource-card,
+      .resource-grid,
+      .info,
+      .marks,
+      .footer {
         display: block !important;
       }
 
-      #marksTable {
-        position: static !important;
-        margin: 0 !important;
-        width: 100% !important;
-        background: transparent !important;
-        box-shadow: none !important;
-        border: none !important;
+      .header {
+        border-bottom: 1px solid #ccc;
+        padding-bottom: 8px;
+        margin-bottom: 12px;
       }
 
-      #marksTable table {
+      .profile-card,
+      .resource-card,
+      .info,
+      .marks {
+        box-shadow: none !important;
+        background: #fff !important;
+        border: 1px solid #ddd !important;
+      }
+
+      table {
         width: 100% !important;
         border-collapse: collapse !important;
-        background: transparent !important;
+        page-break-inside: auto;
       }
 
-      #marksTable th,
-      #marksTable td {
+      th,
+      td {
         background: #fff !important;
         color: #000 !important;
         border: 1px solid #000 !important;
         padding: 8px !important;
       }
 
-      .marks {
-        margin: 0 !important;
-        padding: 0 !important;
+      .footer {
+        margin-top: 24px;
+        padding-top: 10px;
+        border-top: 1px solid #ccc;
+        text-align: center;
+        font-size: 12px;
+        color: #333;
       }
 
-      body.print-marks * {
-        visibility: hidden !important;
-      }
-
-      body.print-marks #marksTable,
-      body.print-marks #marksTable * {
-        visibility: visible !important;
-      }
-
-      body.print-marks #marksTable {
-        position: absolute !important;
-        top: 0 !important;
-        left: 0 !important;
-        width: 100% !important;
+      .footer .dev-group {
+        font-weight: 700;
+        letter-spacing: 0.08em;
+        color: #000;
       }
     }
   </style>
@@ -1136,12 +1123,12 @@
         <h2>Student Portal Login</h2>
 
         <label for="regno">Registration Number</label>
-        <input type="text" id="regno" placeholder="Enter Registration Number (e.g. 22IT001)" value="22IT001">
+        <input type="text" id="regno" placeholder="Enter Registration Number (e.g. 22IT001)" >
 
         <label for="password">Password</label>
         <div class="password-field">
-          <input type="password" id="password" placeholder="Enter Password (Default is DOB: 22/06/2005)"
-            value="22/06/2005">
+          <input type="password" id="password" placeholder="Enter Password (Default is DOB: 22-06-2005)"
+            >
           <button type="button" class="password-toggle" onclick="togglePasswordVisibility('password', this)" aria-label="Show password">👁</button>
         </div>
         <small>Default Password is your Date of Birth in dd-mm-yyyy format</small>
@@ -1190,7 +1177,7 @@
 
         <label for="res_dob">Date of Birth (dd-mm-yyyy)</label>
         <input type="text" id="res_dob" placeholder="e.g., 22-06-2005" pattern="\d{2}[-/]\d{2}[-/]\d{4}">
-        <small>Use format: dd-mm-yyyy or dd/mm/yyyy</small>
+        <small>Use format: dd-mm-yyyy </small>
 
         <button type="button" class="btn-primary" id="getResultsBtn" onclick="fetchSemesterResult()">
           <span>View Marksheet</span> 🔍
@@ -1605,7 +1592,7 @@
         }
 
         loadingScreen.classList.remove('active');
-        showError("Invalid Registration Number or Password. (Demo: Reg No: 22IT001, Pass: 22/06/2005)");
+        showError("Invalid Registration Number or Password.");
       } catch (err) {
         loadingScreen.classList.remove('active');
         showError("Authentication error: " + err.message);
@@ -1678,7 +1665,7 @@
       const container = document.getElementById("profileContainer");
       if (!currentUser) return;
 
-      const photo = currentUser.photoUrl || "https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=250&q=80";
+      const photo = currentUser.photoUrl || "https://share.google/1Yz0vEFBt4zWpSfKY";
 
       container.innerHTML = `
         <div class="profile-card">
@@ -1920,9 +1907,7 @@
     }
 
     function printMarks() {
-      document.body.classList.add('print-marks');
       window.print();
-      setTimeout(() => document.body.classList.remove('print-marks'), 0);
     }
 
     // Logout Handler
