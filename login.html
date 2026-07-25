@@ -988,38 +988,100 @@
     /* Print Styles */
     @media print {
       body {
+        margin: 0;
+        padding: 0;
         background: #fff !important;
         color: #000 !important;
       }
 
-      .navbar,
       .header,
+      .navbar,
       .footer,
       .marquee-container,
       .menu-toggle,
-      .btn-logout,
+      .portal-tabs-bar,
       .profile-actions,
-      .container button,
-      button {
+      .modal-overlay,
+      .loading-overlay,
+      .error,
+      label,
+      input,
+      select,
+      small,
+      .btn-primary,
+      .btn-secondary,
+      .user-status-bar,
+      .user-avatar-small,
+      .user-status-text,
+      .profile-header,
+      .profile-card,
+      .resource-card,
+      .resource-grid,
+      .portal-tabs-bar,
+      .glitter-marquee,
+      #loginView,
+      #profileView,
+      #certificationsView,
+      #aptitudeView,
+      #resultsView > .container > h2,
+      #resultsView > .container > label,
+      #resultsView > .container > input,
+      #resultsView > .container > select,
+      #resultsView > .container > small,
+      #resultsView > .container > .btn-primary,
+      #resultsView > .container > .btn-secondary,
+      #resultsView > .container > .error,
+      #resultsView > .container > .info {
         display: none !important;
       }
 
-      .main-wrapper,
-      .container,
-      .profile-card {
-        box-shadow: none !important;
-        border: 1px solid #ccc !important;
-        background: #fff !important;
-        color: #000 !important;
-        width: 100% !important;
-        max-width: 100% !important;
+      #resultsView,
+      #marksTable {
+        display: block !important;
       }
 
-      table th,
-      table td {
+      #marksTable {
+        position: static !important;
+        margin: 0 !important;
+        width: 100% !important;
+        background: transparent !important;
+        box-shadow: none !important;
+        border: none !important;
+      }
+
+      #marksTable table {
+        width: 100% !important;
+        border-collapse: collapse !important;
+        background: transparent !important;
+      }
+
+      #marksTable th,
+      #marksTable td {
         background: #fff !important;
         color: #000 !important;
-        border: 1px solid #ddd !important;
+        border: 1px solid #000 !important;
+        padding: 8px !important;
+      }
+
+      .marks {
+        margin: 0 !important;
+        padding: 0 !important;
+      }
+
+      body.print-marks * {
+        visibility: hidden !important;
+      }
+
+      body.print-marks #marksTable,
+      body.print-marks #marksTable * {
+        visibility: visible !important;
+      }
+
+      body.print-marks #marksTable {
+        position: absolute !important;
+        top: 0 !important;
+        left: 0 !important;
+        width: 100% !important;
       }
     }
   </style>
@@ -1034,16 +1096,6 @@
       <h2>DEPARTMENT OF INFORMATION TECHNOLOGY</h2>
     </div>
 
-    <div class="user-status-bar" id="portalHeaderBar" style="display: none;">
-      <div class="user-status-info">
-        <img src="" alt="Student Avatar" class="user-avatar-small" id="headerAvatar">
-        <div class="user-status-text">
-          <div class="user-status-name" id="headerName">Student Name</div>
-          <div class="user-status-reg" id="headerReg">22IT001 • Department of IT</div>
-        </div>
-      </div>
-      <button class="btn-logout" onclick="logout()">Logout 🚪</button>
-    </div>
   </header>
 
   <nav class="navbar" id="navbar">
@@ -1149,7 +1201,7 @@
         <div class="marks" id="marksTable"></div>
 
         <div style="text-align: center; margin-top: 20px;">
-          <button class="btn-secondary" onclick="window.print()" style="display: inline-flex;">🖨️ Print Result</button>
+          <button class="btn-secondary" onclick="printMarks()" style="display: inline-flex;">🖨️ Print Result</button>
         </div>
       </div>
     </section>
@@ -1358,7 +1410,7 @@
      * GOOGLE SHEETS BACKEND CONFIGURATION
      * Replace AUTH_SCRIPT_URL below with your deployed Google Apps Script Web App URL for Google Sheet 1 (Auth_Profile)
      */
-    const AUTH_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbz6OH5zJFlv_0e38I9rhzyjLgl-hZhOMh5DDCdVbue7p0-h_ZrhpXCIxod-_EXQmc0z/exec";
+    const AUTH_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbx-xrb1W_6KcSkliShtCWeGk9yiLMxihf8EWsHHpRLgEM9CsvYhh6knNwTkKokpwhiQ/exec";
 
     // Google Apps Script Endpoints Mapping for Semester Marksheets (Google Sheet 2)
     const scriptURLs = {
@@ -1649,24 +1701,20 @@
 
     function showAuthenticatedDashboard() {
       document.getElementById("loginView").classList.remove("active");
-      document.getElementById("portalHeaderBar").style.display = "flex";
       document.getElementById("portalNavTabs").style.display = "flex";
-
-      // Update header text
-      document.getElementById("headerName").textContent = currentUser.name || currentUser.studentName || "Student";
-      document.getElementById("headerReg").textContent = `${currentUser.regno || currentUser.regNo} • ${currentUser.department || "IT"}`;
-      if (currentUser.photoUrl) {
-        document.getElementById("headerAvatar").src = currentUser.photoUrl;
-      } else {
-        document.getElementById("headerAvatar").src = "https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=250&q=80";
-      }
 
       // Pre-fill student regno and DOB in the Results view inputs
       document.getElementById("res_regno").value = currentUser.regno || currentUser.regNo || "";
       document.getElementById("res_dob").value = currentUser.dob || currentUser.password || "";
 
       // Default view is Basic Profile Details
-      showTab('profile');
+      renderProfile();
+      document.getElementById("profileView").classList.add("active");
+      document.getElementById("tabBtn_profile").classList.add("active");
+      document.querySelectorAll('.view-section').forEach(sec => {
+        if (sec.id !== 'profileView') sec.classList.remove('active');
+      });
+      currentTab = 'profile';
     }
 
     // Tab Navigation inside Portal
@@ -1707,7 +1755,7 @@
         <div class="profile-card">
           <div class="profile-header">
             <div class="profile-avatar-wrapper">
-              <img src="${currentUser.photoUrl}" alt="${currentUser.name}" class="profile-avatar" id="profileImg" referrerpolicy="no-referrer" onerror="this.onerror=null;this.src='https://via.placeholder.com/110';">
+              <img src="${photo}" alt="${currentUser.name}" class="profile-avatar" id="profileImg" referrerpolicy="no-referrer" onerror="this.onerror=null;this.src='https://via.placeholder.com/110';">
             </div>
             <div class="profile-title-area">
               <h3>${currentUser.name || currentUser.studentName}</h3>
@@ -1730,6 +1778,7 @@
 
           <div class="profile-actions">
             <button class="btn-secondary" onclick="openPasswordModal()">🔑 Change Password</button>
+            <button class="btn-secondary" onclick="logout()">🚪 Logout</button>
             <button class="btn-secondary" onclick="window.print()">🖨️ Print Profile</button>
           </div>
         </div>
@@ -1941,11 +1990,16 @@
       closePasswordModal();
     }
 
+    function printMarks() {
+      document.body.classList.add('print-marks');
+      window.print();
+      setTimeout(() => document.body.classList.remove('print-marks'), 0);
+    }
+
     // Logout Handler
     function logout() {
       currentUser = null;
       sessionStorage.removeItem("itmec_user");
-      document.getElementById("portalHeaderBar").style.display = "none";
       document.getElementById("portalNavTabs").style.display = "none";
 
       document.querySelectorAll('.view-section').forEach(sec => sec.classList.remove('active'));
