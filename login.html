@@ -1187,9 +1187,6 @@
         <div class="info" id="studentInfo"></div>
         <div class="marks" id="marksTable"></div>
 
-        <div style="text-align: center; margin-top: 20px;">
-          <button class="btn-secondary" onclick="printMarks()" style="display: inline-flex;">🖨️ Print Result</button>
-        </div>
       </div>
     </section>
 
@@ -1665,13 +1662,14 @@
       const container = document.getElementById("profileContainer");
       if (!currentUser) return;
 
-      const photo = currentUser.photoUrl || "https://share.google/1Yz0vEFBt4zWpSfKY";
+      const defaultPhoto = "https://www.shutterstock.com/image-vector/single-icon-user-not-found-260nw-2651687423.jpg";
+      const photo = (currentUser.photoUrl && String(currentUser.photoUrl).trim()) ? currentUser.photoUrl : defaultPhoto;
 
       container.innerHTML = `
         <div class="profile-card">
           <div class="profile-header">
             <div class="profile-avatar-wrapper">
-              <img src="${photo}" alt="${currentUser.name}" class="profile-avatar" id="profileImg" referrerpolicy="no-referrer" onerror="this.onerror=null;this.src='https://via.placeholder.com/110';">
+              <img src="${photo}" alt="${currentUser.name}" class="profile-avatar" id="profileImg" referrerpolicy="no-referrer" onerror="this.onerror=null;this.src='${defaultPhoto}';">
             </div>
             <div class="profile-title-area">
               <h3>${currentUser.name || currentUser.studentName}</h3>
@@ -1695,7 +1693,6 @@
           <div class="profile-actions">
             <button class="btn-secondary" onclick="openPasswordModal()">🔑 Change Password</button>
             <button class="btn-secondary" onclick="logout()">🚪 Logout</button>
-            <button class="btn-secondary" onclick="window.print()">🖨️ Print Profile</button>
           </div>
         </div>
       `;
@@ -1904,10 +1901,6 @@
 
       alert("Password updated successfully!");
       closePasswordModal();
-    }
-
-    function printMarks() {
-      window.print();
     }
 
     // Logout Handler
