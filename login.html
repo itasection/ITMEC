@@ -576,6 +576,59 @@
       border-color: var(--accent);
     }
 
+    .btn-submit {
+      background: linear-gradient(135deg, #6366f1 0%, #4f46e5 60%, #4338ca 100%);
+      color: #fff;
+      border: 1px solid rgba(99, 102, 241, 0.35);
+      padding: 14px 28px;
+      border-radius: 16px;
+      box-shadow: 0 18px 40px rgba(99, 102, 241, 0.20);
+      font-size: 1rem;
+      font-weight: 700;
+      width: auto;
+      min-width: 220px;
+      transition: transform 0.2s ease, box-shadow 0.2s ease, filter 0.2s ease;
+    }
+
+    .btn-submit:hover {
+      transform: translateY(-2px);
+      filter: brightness(1.08);
+      box-shadow: 0 20px 48px rgba(99, 102, 241, 0.30);
+    }
+
+    .test-quiz-footer {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 14px;
+      margin-top: 24px;
+      flex-wrap: wrap;
+    }
+
+    .test-quiz-footer .button-left,
+    .test-quiz-footer .button-right,
+    .test-quiz-footer .button-center {
+      display: flex;
+      gap: 12px;
+      flex: 1 1 220px;
+      min-width: 180px;
+    }
+
+    .test-quiz-footer .button-center {
+      justify-content: center;
+      order: 3;
+    }
+
+    .test-quiz-footer .button-left {
+      justify-content: flex-start;
+      order: 1;
+    }
+
+    .test-quiz-footer .button-right {
+      justify-content: flex-end;
+      order: 2;
+    }
+
     /* Error Box */
     .error {
       color: var(--accent-red);
@@ -789,6 +842,162 @@
     .resource-link:hover {
       color: #fff;
       text-decoration: underline;
+    }
+
+    /* Online Test Styles */
+    .test-shell {
+      max-width: 980px;
+      margin: 0 auto;
+      padding: 0 12px;
+    }
+
+    .test-card {
+      background: linear-gradient(180deg, rgba(20, 26, 45, 0.96), rgba(10, 14, 23, 0.98));
+      border: 1px solid rgba(99, 102, 241, 0.18);
+      border-radius: 24px;
+      padding: 32px;
+      box-shadow: 0 22px 48px rgba(0, 0, 0, 0.38);
+      transition: transform 0.25s ease, box-shadow 0.25s ease;
+    }
+
+    .test-card:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 28px 56px rgba(0, 0, 0, 0.45);
+    }
+
+    .test-card-hidden {
+      display: none;
+    }
+
+    .test-subtitle {
+      color: var(--text-muted);
+      margin: -8px 0 18px;
+      line-height: 1.6;
+    }
+
+    .test-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      gap: 18px;
+      margin-bottom: 20px;
+      flex-wrap: wrap;
+    }
+
+    .test-header h3 {
+      margin: 0;
+      font-size: clamp(1.4rem, 2vw, 1.75rem);
+    }
+
+    .test-quiz-footer {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      margin-top: 24px;
+      flex-wrap: wrap;
+    }
+
+    .test-quiz-footer .button-left,
+    .test-quiz-footer .button-right {
+      display: flex;
+      gap: 12px;
+      flex: 1 1 33%;
+      min-width: 180px;
+    }
+
+    .test-quiz-footer .button-center {
+      display: flex;
+      justify-content: center;
+      flex: 1 1 100%;
+      margin-top: 8px;
+    }
+
+    .test-quiz-footer .button-left {
+      justify-content: flex-start;
+    }
+
+    .test-quiz-footer .button-right {
+      justify-content: flex-end;
+    }
+
+    .test-quiz-footer button {
+      min-width: 140px;
+    }
+
+    .test-quiz-footer .button-center button {
+      min-width: 220px;
+    }
+
+    .pill {
+      display: inline-block;
+      margin: 0 0 6px;
+      padding: 6px 10px;
+      border-radius: 999px;
+      background: rgba(99, 102, 241, 0.16);
+      color: var(--accent-cyan);
+      font-size: 0.75rem;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    .timer-pill {
+      padding: 10px 12px;
+      border-radius: 999px;
+      background: rgba(248, 113, 113, 0.14);
+      color: var(--accent-red);
+      font-weight: 700;
+      white-space: nowrap;
+    }
+
+    .test-instructions {
+      padding-left: 18px;
+      color: var(--text-muted);
+      line-height: 1.8;
+    }
+
+    .test-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-top: 20px;
+    }
+
+    .test-options {
+      display: grid;
+      gap: 12px;
+      margin-top: 18px;
+    }
+
+    .option-btn {
+      width: 100%;
+      text-align: left;
+      padding: 12px 14px;
+      border-radius: 12px;
+      border: 1px solid rgba(99, 102, 241, 0.2);
+      background: rgba(10, 14, 23, 0.6);
+      color: var(--text);
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+
+    .option-btn:hover,
+    .option-btn.selected {
+      border-color: var(--accent-cyan);
+      color: #fff;
+      background: rgba(34, 211, 238, 0.12);
+      box-shadow: 0 0 0 2px rgba(34, 211, 238, 0.16);
+    }
+
+    .result-pill {
+      margin: 18px 0 12px;
+      display: inline-block;
+      padding: 10px 14px;
+      border-radius: 999px;
+      background: rgba(16, 185, 129, 0.14);
+      color: var(--accent-green);
+      font-weight: 700;
     }
 
     /* Modal Overlay */
@@ -1099,20 +1308,19 @@
   </nav>
 
   <div class="portal-tabs-bar" id="portalNavTabs" style="display: none;">
-    <button class="nav-tab active" id="tabBtn_profile" onclick="showTab('profile')">👤 Basic Profile</button>
-    <button class="nav-tab" id="tabBtn_results" onclick="showTab('results')">📊 Marksheet Results</button>
-    <button class="nav-tab" id="tabBtn_certifications" onclick="showTab('certifications')">🎓 Certifications</button>
+    <button class="nav-tab active" id="tabBtn_profile" onclick="showTab('profile')">👤 Basic Information</button>
+    <button class="nav-tab" id="tabBtn_results" onclick="showTab('results')">📊 Results</button>
+    <button class="nav-tab" id="tabBtn_certifications" onclick="showTab('certifications')">🎓 Certification</button>
     <button class="nav-tab" id="tabBtn_aptitude" onclick="showTab('aptitude')">🧩 Aptitude</button>
+    <button class="nav-tab" id="tabBtn_test" onclick="showTab('test')">📝 Test</button>
   </div>
 
   <!-- Animated Marquee Notice -->
   <div class="marquee-container">
     <div class="glitter-marquee">
-      📢 ATTENTION: FOR SECOND YEAR STUDENTS, The Result for <strong>Semester 2</strong> has been Published along with
-      CGPA.
-      📢 ATTENTION: FOR THIRD YEAR STUDENTS, The Result for <strong>Semester 4</strong> has been Published along with
-      CGPA. &nbsp;&nbsp;&nbsp;&nbsp; 📢 ATTENTION: FOR FINAL YEAR STUDENTS,The Result for <strong> Semester
-        6</strong> has been Published along with CGPA. Check Here..
+      📢 ATTENTION: FOR SECOND YEAR STUDENTS, The Result for <strong>Semester 3</strong> has been Published along with
+      CGPA. &nbsp;&nbsp;&nbsp;&nbsp; 📢 ATTENTION: FOR THIRD YEAR STUDENTS, The Result for <strong>till Semester
+        5</strong> has been Published along with CGPA. Check Here..
     </div>
   </div>
 
@@ -1129,7 +1337,7 @@
 
         <label for="password">Password</label>
         <div class="password-field">
-          <input type="password" id="password" placeholder="Enter Password"
+          <input type="password" id="password" placeholder="Enter Password (Default is DOB: 22-06-2005)"
             >
           <button type="button" class="password-toggle" onclick="togglePasswordVisibility('password', this)" aria-label="Show password">👁</button>
         </div>
@@ -1343,6 +1551,76 @@
       </div>
     </section>
 
+    <!-- 6. ONLINE TEST VIEW -->
+    <section class="view-section" id="testView">
+      <div class="test-shell">
+        <div class="test-card" id="testLoginCard">
+          <h2>Online Test</h2>
+          <p class="test-subtitle">Use your registration number and date of birth to start the online exam.</p>
+
+          <label for="testRegNo">Register Number</label>
+          <input type="text" id="testRegNo" placeholder="Enter Registration Number">
+
+          <label for="testPassword">Password (DOB)</label>
+          <div class="password-field">
+            <input type="password" id="testPassword" placeholder="Enter Date of Birth (dd-mm-yyyy)">
+            <button type="button" class="password-toggle" onclick="togglePasswordVisibility('testPassword', this)" aria-label="Show password">👁</button>
+          </div>
+
+          <button type="button" class="btn-primary" onclick="loginToTest()">Login to Test</button>
+          <div class="error" id="testErrorMsg"></div>
+        </div>
+
+        <div class="test-card test-card-hidden" id="testInstructionsCard">
+          <div class="test-header">
+            <div>
+              <p class="pill">Test Portal</p>
+              <h3 id="testStudentName">Welcome</h3>
+            </div>
+            <div class="timer-pill" id="testTimer">⏱ 10:00</div>
+          </div>
+          <h3>Instructions</h3>
+          <ul class="test-instructions">
+            <li>Each question has four options and only one correct answer.</li>
+            <li>Use Previous and Next to move through the quiz.</li>
+            <li>The timer will auto-submit the test when it reaches zero.</li>
+          </ul>
+          <div class="test-actions">
+            <button class="btn-secondary" onclick="startQuiz()">Start Test</button>
+          </div>
+        </div>
+
+        <div class="test-card test-card-hidden" id="testQuizCard">
+          <div class="test-header">
+            <div>
+              <p class="pill">Question <span id="quizQuestionNumber">1</span> / <span id="quizQuestionTotal">0</span></p>
+              <h3 id="quizQuestionText">Loading question...</h3>
+            </div>
+            <div class="timer-pill" id="quizTimer">⏱ 10:00</div>
+          </div>
+          <div class="test-options" id="quizOptions"></div>
+          <div class="test-quiz-footer">
+            <div class="button-left">
+              <button id="prevBtn" class="btn-secondary" onclick="goToPreviousQuestion()">Previous</button>
+            </div>
+            <div class="button-center">
+              <button id="submitBtn" class="btn-submit" onclick="submitTest(false)">Submit Test</button>
+            </div>
+            <div class="button-right">
+              <button id="nextBtn" class="btn-primary" onclick="goToNextQuestion()">Next</button>
+            </div>
+          </div>
+        </div>
+
+        <div class="test-card test-card-hidden" id="testResultCard">
+          <h3 id="testResultTitle">Result</h3>
+          <p id="testResultMessage">Your test result will appear here.</p>
+          <div class="result-pill" id="testResultSummary"></div>
+          <button class="btn-secondary" onclick="resetTestModule()">Try Again</button>
+        </div>
+      </div>
+    </section>
+
   </main>
 
   <!-- Change Password Modal -->
@@ -1420,9 +1698,34 @@
 
     
 
+    const TEST_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbxx29qV1E9185RFtsbw-lOkHjy6fwolf4lkia6yu2Ko3OXki1OwOX0cu1XOhgF7YcMh/exec";
+    const TEST_TIMER_SECONDS = 600;
+
     // Global App State
     let currentUser = null;
     let currentTab = 'profile';
+    let testState = {
+      phase: 'login',
+      regNo: '',
+      studentName: '',
+      department: '',
+      questions: [],
+      currentQuestionIndex: 0,
+      answers: {},
+      timerSeconds: TEST_TIMER_SECONDS,
+      timerInterval: null,
+      submitted: false
+    };
+
+    document.onkeydown = function(e) {
+      if (
+        e.key === "F12" || 
+        (e.ctrlKey && e.shiftKey && (e.key === "I" || e.key === "J" || e.key === "C")) || 
+        (e.ctrlKey && e.key === "U")
+      ) {
+        return false;
+      }
+    };
 
     // Initialize App
     document.addEventListener("DOMContentLoaded", () => {
@@ -1481,16 +1784,7 @@
       });
 
       // Anti-inspect & context menu guard
-      document.addEventListener("contextmenu", e => e.preventDefault());
-      document.onkeydown = function (e) {
-        if (
-          e.key === "F12" ||
-          (e.ctrlKey && e.shiftKey && (e.key === "I" || e.key === "J" || e.key === "C")) ||
-          (e.ctrlKey && e.key === "U")
-        ) {
-          return false;
-        }
-      };
+      
     }
 
     function checkExistingSession() {
@@ -1614,6 +1908,388 @@
       toggleButton.setAttribute('aria-label', isHidden ? 'Hide password' : 'Show password');
     }
 
+    function showTestError(msg) {
+      const errorBox = document.getElementById('testErrorMsg');
+      if (!errorBox) return;
+      errorBox.textContent = msg;
+      errorBox.classList.add('show');
+    }
+
+    function resetTestModule() {
+      clearInterval(testState.timerInterval);
+      testState = {
+        phase: 'login',
+        regNo: '',
+        studentName: '',
+        department: '',
+        questions: [],
+        currentQuestionIndex: 0,
+        answers: {},
+        timerSeconds: TEST_TIMER_SECONDS,
+        timerInterval: null,
+        submitted: false
+      };
+      document.getElementById('testRegNo').value = '';
+      document.getElementById('testPassword').value = '';
+      document.getElementById('testErrorMsg').textContent = '';
+      document.getElementById('testErrorMsg').classList.remove('show');
+      renderTestView();
+    }
+
+    function renderTestView() {
+      const loginCard = document.getElementById('testLoginCard');
+      const instructionsCard = document.getElementById('testInstructionsCard');
+      const quizCard = document.getElementById('testQuizCard');
+      const resultCard = document.getElementById('testResultCard');
+
+      if (!loginCard || !instructionsCard || !quizCard || !resultCard) return;
+
+      loginCard.classList.toggle('test-card-hidden', testState.phase !== 'login');
+      instructionsCard.classList.toggle('test-card-hidden', testState.phase !== 'instructions');
+      quizCard.classList.toggle('test-card-hidden', testState.phase !== 'quiz');
+      resultCard.classList.toggle('test-card-hidden', testState.phase !== 'result');
+      setAIBotVisibility(testState.phase !== 'quiz');
+
+      if (testState.phase === 'instructions') {
+        document.getElementById('testStudentName').textContent = `Welcome, ${testState.studentName || 'Student'}`;
+      }
+
+      if (testState.phase === 'quiz') {
+        updateTimerDisplay();
+      }
+    }
+
+    function setAIBotVisibility(visible) {
+      const botRoot = document.getElementById('mini-ai-bot-root');
+      if (!botRoot) return;
+      botRoot.style.display = visible ? 'block' : 'none';
+    }
+
+    function formatTime(seconds) {
+      const mins = String(Math.floor(seconds / 60)).padStart(2, '0');
+      const secs = String(seconds % 60).padStart(2, '0');
+      return `${mins}:${secs}`;
+    }
+
+    function updateTimerDisplay() {
+      const display = document.getElementById('quizTimer') || document.getElementById('testTimer');
+      if (!display) return;
+      display.textContent = `⏱ ${formatTime(testState.timerSeconds)}`;
+    }
+
+    function startTimer() {
+      clearInterval(testState.timerInterval);
+      updateTimerDisplay();
+      testState.timerInterval = setInterval(() => {
+        testState.timerSeconds -= 1;
+        updateTimerDisplay();
+        if (testState.timerSeconds <= 0) {
+          clearInterval(testState.timerInterval);
+          submitTest(true);
+        }
+      }, 1000);
+    }
+
+    async function loginToTest() {
+      const regNo = document.getElementById('testRegNo').value.trim().toUpperCase();
+      const password = document.getElementById('testPassword').value.trim();
+      const loadingScreen = document.getElementById('loadingScreen');
+
+      if (!regNo || !password) {
+        showTestError('Please enter both registration number and password.');
+        return;
+      }
+
+      loadingScreen.classList.add('active');
+      try {
+        const params = new URLSearchParams();
+        params.append('action', 'login');
+        params.append('regNo', regNo);
+        params.append('password', password);
+
+        const response = await fetch(TEST_SCRIPT_URL, {
+          method: 'POST',
+          body: params
+        });
+        const data = await response.json();
+
+        if (!data.success) {
+          throw new Error(data.message || 'Invalid Register Number or Password');
+        }
+
+        testState.regNo = regNo;
+        testState.studentName = data.name || data.studentName || 'Student';
+        testState.department = data.department || 'Department';
+        testState.phase = 'instructions';
+        testState.submitted = false;
+        testState.timerSeconds = TEST_TIMER_SECONDS;
+        testState.answers = {};
+        testState.currentQuestionIndex = 0;
+        renderTestView();
+        await loadTestQuestions();
+      } catch (error) {
+        showTestError(error.message || 'Unable to reach the online test server.');
+      } finally {
+        loadingScreen.classList.remove('active');
+      }
+    }
+
+    async function loadTestQuestions() {
+      const loadingScreen = document.getElementById('loadingScreen');
+      loadingScreen.classList.add('active');
+      try {
+        const params = new URLSearchParams();
+        params.append('action', 'getQuestions');
+        params.append('regNo', testState.regNo);
+
+        const response = await fetch(TEST_SCRIPT_URL, {
+          method: 'POST',
+          body: params
+        });
+        const data = await response.json();
+
+        if (!data.success || !Array.isArray(data.questions)) {
+          throw new Error(data.message || 'Unable to load questions.');
+        }
+
+        testState.questions = data.questions.map((question, index) => ({
+          ...question,
+          id: question.id || question.questionId || `q${index + 1}`
+        }));
+        document.getElementById('quizQuestionTotal').textContent = testState.questions.length;
+        document.getElementById('quizQuestionNumber').textContent = '1';
+        renderTestView();
+      } catch (error) {
+        showTestError(error.message || 'Unable to load questions.');
+        testState.phase = 'login';
+        renderTestView();
+      } finally {
+        loadingScreen.classList.remove('active');
+      }
+    }
+
+    function startQuiz() {
+      testState.phase = 'quiz';
+      testState.currentQuestionIndex = 0;
+      testState.timerSeconds = TEST_TIMER_SECONDS;
+      testState.submitted = false;
+      renderQuestion();
+      startTimer();
+      setupInterruptionWatchers();
+      enterFullscreen();
+      renderTestView();
+    }
+
+    function enterFullscreen() {
+      const elem = document.documentElement;
+      if (elem.requestFullscreen) {
+        elem.requestFullscreen().catch(() => {});
+      } else if (elem.webkitRequestFullscreen) {
+        elem.webkitRequestFullscreen();
+      } else if (elem.msRequestFullscreen) {
+        elem.msRequestFullscreen();
+      }
+    }
+
+    function exitFullscreen() {
+      if (document.fullscreenElement) {
+        if (document.exitFullscreen) {
+          document.exitFullscreen().catch(() => {});
+        } else if (document.webkitExitFullscreen) {
+          document.webkitExitFullscreen();
+        } else if (document.msExitFullscreen) {
+          document.msExitFullscreen();
+        }
+      }
+    }
+
+    function setupInterruptionWatchers() {
+      window.addEventListener('blur', handleInterruption);
+      document.addEventListener('visibilitychange', handleInterruption);
+      document.addEventListener('fullscreenchange', handleFullscreenChange);
+      document.addEventListener('webkitfullscreenchange', handleFullscreenChange);
+      document.addEventListener('mozfullscreenchange', handleFullscreenChange);
+      document.addEventListener('MSFullscreenChange', handleFullscreenChange);
+    }
+
+    function removeInterruptionWatchers() {
+      window.removeEventListener('blur', handleInterruption);
+      document.removeEventListener('visibilitychange', handleInterruption);
+      document.removeEventListener('fullscreenchange', handleFullscreenChange);
+      document.removeEventListener('webkitfullscreenchange', handleFullscreenChange);
+      document.removeEventListener('mozfullscreenchange', handleFullscreenChange);
+      document.removeEventListener('MSFullscreenChange', handleFullscreenChange);
+    }
+
+    function handleInterruption() {
+      if (testState.phase !== 'quiz' || testState.submitted) {
+        return;
+      }
+      if (document.hidden || document.visibilityState !== 'visible' || (typeof document.hasFocus === 'function' && !document.hasFocus())) {
+        disqualifyTest('Interruption detected. You have been disqualified.');
+      }
+    }
+
+    function handleFullscreenChange() {
+      if (testState.phase !== 'quiz' || testState.submitted) {
+        return;
+      }
+      const fullscreenElement = document.fullscreenElement || document.webkitFullscreenElement || document.mozFullScreenElement || document.msFullscreenElement;
+      if (!fullscreenElement) {
+        disqualifyTest('Full screen exited. You have been disqualified.');
+      }
+    }
+
+    async function disqualifyTest(message) {
+      if (testState.submitted) return;
+      testState.submitted = true;
+      clearInterval(testState.timerInterval);
+      removeInterruptionWatchers();
+      exitFullscreen();
+      const loadingScreen = document.getElementById('loadingScreen');
+      if (loadingScreen) loadingScreen.classList.add('active');
+
+      try {
+        const params = new URLSearchParams();
+        params.append('action', 'submitQuiz');
+        params.append('regNo', testState.regNo);
+        params.append('answers', JSON.stringify([]));
+        params.append('disqualified', 'true');
+
+        const response = await fetch(TEST_SCRIPT_URL, {
+          method: 'POST',
+          body: params,
+          headers: {
+            'Content-Type': 'application/x-www-form-urlencoded;charset=UTF-8'
+          }
+        });
+
+        const data = await response.json().catch(() => null);
+        if (!data || !data.success) {
+          console.warn('Disqualification request failed:', data || 'No JSON response');
+        }
+      } catch (err) {
+        console.warn('Disqualification record save failed:', err);
+      } finally {
+        if (loadingScreen) loadingScreen.classList.remove('active');
+      }
+
+      document.getElementById('testResultTitle').textContent = 'Disqualified';
+      document.getElementById('testResultMessage').textContent = message || 'Interruption detected. You have been disqualified.';
+      document.getElementById('testResultSummary').innerHTML = `Score: <strong>0/${testState.questions.length}</strong>`;
+      testState.phase = 'result';
+      renderTestView();
+    }
+
+    function renderQuestion() {
+      const question = testState.questions[testState.currentQuestionIndex];
+      const optionsBox = document.getElementById('quizOptions');
+      if (!question || !optionsBox) return;
+
+      document.getElementById('quizQuestionNumber').textContent = testState.currentQuestionIndex + 1;
+      document.getElementById('quizQuestionTotal').textContent = testState.questions.length;
+      document.getElementById('quizQuestionText').textContent = question.question || question.Question || 'Question';
+      optionsBox.innerHTML = '';
+
+      const optionValues = Array.isArray(question.options)
+        ? question.options
+        : [
+            question.optionA || question.OptionA || question.option1 || '',
+            question.optionB || question.OptionB || question.option2 || '',
+            question.optionC || question.OptionC || question.option3 || '',
+            question.optionD || question.OptionD || question.option4 || ''
+          ];
+
+      optionValues.forEach((option) => {
+        if (!option) return;
+        const button = document.createElement('button');
+        button.className = 'option-btn';
+        button.textContent = option;
+        button.type = 'button';
+        const selectedValue = testState.answers[question.id];
+        if (selectedValue === option) {
+          button.classList.add('selected');
+        }
+        button.addEventListener('click', () => {
+          testState.answers[question.id] = option;
+          renderQuestion();
+        });
+        optionsBox.appendChild(button);
+      });
+
+      const prevBtn = document.getElementById('prevBtn');
+      const nextBtn = document.getElementById('nextBtn');
+      const submitBtn = document.getElementById('submitBtn');
+
+      if (prevBtn) {
+        prevBtn.style.display = testState.currentQuestionIndex > 0 ? 'inline-flex' : 'none';
+      }
+      if (nextBtn) {
+        nextBtn.style.display = testState.currentQuestionIndex < testState.questions.length - 1 ? 'inline-flex' : 'none';
+      }
+      if (submitBtn) {
+        submitBtn.style.display = 'inline-flex';
+      }
+    }
+
+    function goToPreviousQuestion() {
+      if (testState.currentQuestionIndex > 0) {
+        testState.currentQuestionIndex -= 1;
+        renderQuestion();
+      }
+    }
+
+    function goToNextQuestion() {
+      if (testState.currentQuestionIndex < testState.questions.length - 1) {
+        testState.currentQuestionIndex += 1;
+        renderQuestion();
+      }
+    }
+
+    async function submitTest(autoSubmit = false) {
+      if (testState.submitted) return;
+      testState.submitted = true;
+      clearInterval(testState.timerInterval);
+
+      const loadingScreen = document.getElementById('loadingScreen');
+      loadingScreen.classList.add('active');
+
+      const answers = testState.questions.map((question) => testState.answers[question.id] || '');
+
+      try {
+        const params = new URLSearchParams();
+        params.append('action', 'submitQuiz');
+        params.append('regNo', testState.regNo);
+        params.append('answers', JSON.stringify(answers));
+
+        const response = await fetch(TEST_SCRIPT_URL, {
+          method: 'POST',
+          body: params
+        });
+        const data = await response.json();
+
+        if (!data.success) {
+          throw new Error(data.message || 'Unable to submit the test.');
+        }
+
+        const title = autoSubmit ? 'Time Up!' : 'Test Submitted';
+        const message = data.message || `You scored ${data.score} out of ${data.total}.`;
+        document.getElementById('testResultTitle').textContent = title;
+        document.getElementById('testResultMessage').textContent = message;
+        document.getElementById('testResultSummary').innerHTML = `Score: <strong>${data.score}/${data.total}</strong>`;
+        testState.phase = 'result';
+        renderTestView();
+      } catch (error) {
+        document.getElementById('testResultTitle').textContent = 'Submission Error';
+        document.getElementById('testResultMessage').textContent = error.message || 'Unable to save your result.';
+        document.getElementById('testResultSummary').innerHTML = 'Please try again later.';
+        testState.phase = 'result';
+        renderTestView();
+      } finally {
+        loadingScreen.classList.remove('active');
+      }
+    }
+
     function showAuthenticatedDashboard() {
       document.getElementById("loginView").classList.remove("active");
       document.getElementById("portalNavTabs").style.display = "flex";
@@ -1656,6 +2332,9 @@
         document.getElementById("certificationsView").classList.add("active");
       } else if (tabName === 'aptitude') {
         document.getElementById("aptitudeView").classList.add("active");
+      } else if (tabName === 'test') {
+        renderTestView();
+        document.getElementById("testView").classList.add("active");
       }
     }
 
@@ -1916,5 +2595,6 @@
     }
   </script>
 
+<script src="ai-bot.js"></script>
 </body>
 </html>
